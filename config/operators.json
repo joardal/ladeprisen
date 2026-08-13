@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "operators": [
+    { "id": "circle-k", "name": "Circle K", "aliases": ["circle k", "circlek"] },
+    { "id": "eviny", "name": "Eviny", "aliases": ["eviny", "bilkraft", "bkk"] },
+    { "id": "eon-clever", "name": "E.ON Drive & Clever", "aliases": ["e.on", "eon", "clever"] },
+    { "id": "ionity", "name": "IONITY", "aliases": ["ionity"] },
+    { "id": "ishavsveien", "name": "Ishavsveien", "aliases": ["ishavsveien", "ishavskraft"] },
+    { "id": "kople", "name": "Kople", "aliases": ["kople"] },
+    { "id": "lad-opp", "name": "Lad Opp", "aliases": ["lad opp", "ladopp"] },
+    { "id": "mer", "name": "Mer", "aliases": ["mer norway", "grønn kontakt"] },
+    { "id": "ragde-charge", "name": "Ragde Charge", "aliases": ["ragde", "ragde charge"] },
+    { "id": "recharge", "name": "Recharge", "aliases": ["recharge", "fortum charge & drive", "fortum charge and drive"] },
+    { "id": "tesla", "name": "Tesla", "aliases": ["tesla"] },
+    { "id": "uno-x", "name": "Uno-X", "aliases": ["uno-x", "uno x"] }
+  ]
+}
+

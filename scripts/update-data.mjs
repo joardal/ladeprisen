@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { readJson, writeJsonAtomic } from './lib/io.mjs'
 import { validateDataset } from './lib/validate.mjs'
+import { applyOperatorPrices } from './lib/operator-mapping.mjs'
 import { fetchNobilDump } from './providers/nobil.mjs'
 import { fetchTeslaSite, refreshTeslaTokens } from './providers/tesla.mjs'
 
@@ -9,6 +10,8 @@ const paths = {
   nobilCache: resolve(root, 'data/cache/nobil.json'),
   teslaCache: resolve(root, 'data/cache/tesla.json'),
   teslaConfig: resolve(root, 'config/tesla-sites.json'),
+  operatorConfig: resolve(root, 'config/operators.json'),
+  operatorPrices: resolve(root, 'public/data/operator-prices.json'),
   publicDataset: resolve(root, 'public/data/stations.json'),
   tokenFile: resolve(root, process.env.TESLA_TOKEN_FILE || '.secrets/tesla-tokens.json')
 }
@@ -27,8 +30,9 @@ function isTeslaStation (station) {
   return `${station.name} ${station.operator?.name ?? ''}`.toLowerCase().includes('tesla')
 }
 
-function combine (nobil, tesla) {
+function combine (nobil, tesla, operatorDataset, operatorConfig) {
   const stations = structuredClone(nobil.stations)
+  applyOperatorPrices(stations, operatorDataset, operatorConfig)
   for (const site of tesla?.sites ?? []) {
     let match = stations
       .filter(isTeslaStation)
@@ -133,9 +137,11 @@ async function updateTesla () {
 }
 
 async function main () {
+  const operatorDataset = await readJson(paths.operatorPrices)
+  const operatorConfig = await readJson(paths.operatorConfig)
   const nobil = await updateNobil()
   const tesla = await updateTesla()
-  const dataset = combine(nobil, tesla)
+  const dataset = combine(nobil, tesla, operatorDataset, operatorConfig)
   await writeJsonAtomic(paths.publicDataset, dataset)
   console.log(`Ferdig: ${dataset.stations.length} stasjoner skrevet til public/data/stations.json.`)
 }
@@ -144,4 +150,3 @@ main().catch(error => {
   console.error(`Oppdatering avbrutt: ${error.message}`)
   process.exitCode = 1
 })
-

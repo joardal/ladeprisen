@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-13T12:49:37.861Z",
+  "operators": [
+    {
+      "id": "circle-k",
+      "name": "Circle K",
+      "status": "current",
+      "sourceUrl": "https://www.circlek.no/lading/ladepriser",
+      "fetchedAt": "2026-08-13T12:49:37.307Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Drop-in hurtig- og lynlading",
+          "amount": 6.29,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        },
+        {
+          "customerType": "registered",
+          "label": "Circle K EXTRA",
+          "amount": 5.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "eon-clever",
+      "name": "E.ON Drive & Clever",
+      "sourceUrl": "https://eondrive.no/ladestasjoner/",
+      "reason": "Offisiell nettside viser ikke en nasjonal drop-in-pris.",
+      "status": "manual",
+      "fetchedAt": null,
+      "rates": []
+    },
+    {
+      "id": "eviny",
+      "name": "Eviny",
+      "status": "current",
+      "sourceUrl": "https://hurtiglading.eviny.no/",
+      "fetchedAt": "2026-08-13T12:49:37.089Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Hurtig- og lynlading",
+          "amount": 5.89,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "ionity",
+      "name": "IONITY",
+      "status": "current",
+      "sourceUrl": "https://www.ionity.eu/subscriptions",
+      "fetchedAt": "2026-08-13T12:49:37.120Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "IONITY Direct",
+          "amount": 5.27,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        },
+        {
+          "customerType": "registered",
+          "label": "IONITY Go (app)",
+          "amount": 5,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "ishavsveien",
+      "name": "Ishavsveien",
+      "status": "current",
+      "sourceUrl": "https://www.ishavsveien.no/priser/",
+      "fetchedAt": "2026-08-13T12:49:37.177Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Hurtiglading 50–120 kW",
+          "amount": 4.25,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": 120
+          },
+          "time": null,
+          "monthlyFee": null
+        },
+        {
+          "customerType": "drop-in",
+          "label": "Lynlading over 150 kW",
+          "amount": 4.75,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "kople",
+      "name": "Kople",
+      "status": "current",
+      "sourceUrl": "https://www.kople.no/veiledning/ladepris",
+      "fetchedAt": "2026-08-13T12:49:37.860Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Drop-in dagpris",
+          "amount": 6.49,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": {
+            "startTime": "06:00",
+            "endTime": "00:00"
+          },
+          "monthlyFee": null
+        },
+        {
+          "customerType": "registered",
+          "label": "Kople app/RFID dagpris",
+          "amount": 6.29,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": {
+            "startTime": "06:00",
+            "endTime": "00:00"
+          },
+          "monthlyFee": null
+        },
+        {
+          "customerType": "drop-in",
+          "label": "Nattpris",
+          "amount": 4.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": {
+            "startTime": "00:00",
+            "endTime": "06:00"
+          },
+          "monthlyFee": null
+        },
+        {
+          "customerType": "registered",
+          "label": "Nattpris",
+          "amount": 4.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": {
+            "startTime": "00:00",
+            "endTime": "06:00"
+          },
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "lad-opp",
+      "name": "Lad Opp",
+      "status": "current",
+      "sourceUrl": "https://ladopp.no/betaling/",
+      "fetchedAt": "2026-08-13T12:49:37.102Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Lyn- og hurtiglading",
+          "amount": 5.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 75,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "mer",
+      "name": "Mer",
+      "status": "current",
+      "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
+      "fetchedAt": "2026-08-13T12:49:37.207Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Hurtig- og lynlading",
+          "amount": 6.29,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        }
+      ]
+    },
+    {
+      "id": "ragde-charge",
+      "name": "Ragde Charge",
+      "sourceUrl": "https://ragde.no/charge/",
+      "reason": "Offisiell nettside viser ikke en maskinlesbar nasjonal pris.",
+      "status": "manual",
+      "fetchedAt": null,
+      "rates": []
+    },
+    {
+      "id": "recharge",
+      "name": "Recharge",
+      "status": "current",
+      "sourceUrl": "https://rechargeinfra.com/no/",
+      "fetchedAt": "2026-08-13T12:49:37.339Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Drop-in",
+          "amount": 6.49,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null
+        },
+        {
+          "customerType": "subscription",
+          "label": "Recharge MOVE",
+          "amount": 4.79,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 50,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": 69
+        }
+      ]
+    },
+    {
+      "id": "tesla",
+      "name": "Tesla",
+      "sourceUrl": "https://www.tesla.com/no_no/findus/list/superchargers/Norway",
+      "reason": "Prisene hentes per stasjon fra Tesla-adapteren.",
+      "status": "manual",
+      "fetchedAt": null,
+      "rates": []
+    },
+    {
+      "id": "uno-x",
+      "name": "Uno-X",
+      "sourceUrl": "https://unox.no/lading/",
+      "reason": "Kortprisen publiseres på prismast og lader, ikke på nettsiden.",
+      "status": "manual",
+      "fetchedAt": null,
+      "rates": []
+    }
+  ]
+}

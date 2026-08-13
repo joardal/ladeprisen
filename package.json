@@ -10,8 +10,9 @@
     "build": "node scripts/build-site.mjs",
     "data:update": "node scripts/update-data.mjs",
     "data:validate": "node scripts/validate-data.mjs public/data/stations.json",
+    "prices:update": "node scripts/update-operator-prices.mjs",
+    "prices:validate": "node scripts/validate-operator-prices.mjs public/data/operator-prices.json",
     "test": "node --test",
-    "check": "npm test && npm run build"
+    "check": "npm test && npm run prices:validate && npm run build"
   }
 }
-

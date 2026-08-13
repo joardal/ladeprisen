@@ -6,8 +6,8 @@ Ladeprisen skal gjøre det enkelt å finne den rimeligste hurtigladingen i nærh
 
 - Tesla-priser: teknisk løsning verifisert mot Teslas nåværende app-API.
 - NOBIL: adapter og datamodell er klare; API-nøkkel er søkt om.
-- Andre operatører: legges til som egne, små prisadaptere.
-- Domene og Cloudflare Pages: kan kobles på når domenet er kjøpt.
+- Operatørpriser: åtte åpne, offisielle kilder kontrolleres automatisk.
+- Nettsiden er publisert på https://ladepris.pages.dev/.
 
 ## Lokal oppstart
 
@@ -42,6 +42,14 @@ npm run data:update
 
 Oppdateringen laster først ned og validerer kildedata. Den offentlige `stations.json` erstattes atomisk bare når hele resultatet er gyldig. API-nøkler og tokenverdier blir aldri skrevet til konsollen eller den offentlige filen.
 
+Operatørprisene kan oppdateres uavhengig av NOBIL:
+
+```powershell
+npm run prices:update
+```
+
+Kilder som kun viser pris på fysisk lader eller i app, merkes eksplisitt som manuelle. Et manglende tall skal aldri erstattes med gjetning eller et gammelt tredjepartstall.
+
 Se [docs/data-pipeline.md](docs/data-pipeline.md) for flyten og [docs/nobil-application.txt](docs/nobil-application.txt) for søknadsteksten.
 
 ## Datasikkerhet
@@ -50,4 +58,3 @@ Se [docs/data-pipeline.md](docs/data-pipeline.md) for flyten og [docs/nobil-appl
 - Tesla-token brukes bare i det lokale oppdateringsskriptet.
 - `.env`, `.secrets/`, rådata og lokal cache er blokkert av `.gitignore`.
 - Publiserte data inneholder kilde, hentetidspunkt og attribusjon, men ingen API-nøkler eller personopplysninger.
-

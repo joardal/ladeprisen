@@ -1,4 +1,4 @@
-const ALLOWED_CUSTOMER_TYPES = new Set(['drop-in', 'member', 'tesla-vehicle', 'unknown'])
+const ALLOWED_CUSTOMER_TYPES = new Set(['drop-in', 'registered', 'member', 'subscription', 'tesla-vehicle', 'unknown'])
 
 function assert (condition, message) {
   if (!condition) throw new Error(`Ugyldig datasett: ${message}`)
@@ -44,4 +44,3 @@ export function validateDataset (dataset) {
 
   return dataset
 }
-

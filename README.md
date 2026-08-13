@@ -6,7 +6,7 @@ Ladeprisen skal gjøre det enkelt å finne den rimeligste hurtigladingen i nærh
 
 - Tesla-priser: teknisk løsning verifisert mot Teslas nåværende app-API.
 - NOBIL: adapter og datamodell er klare; API-nøkkel er søkt om.
-- Operatørpriser: åtte åpne, offisielle kilder kontrolleres automatisk.
+- Operatørpriser: ni åpne, offisielle kilder og to tydelig merkede kontrollkilder oppdateres automatisk.
 - Nettsiden er publisert på https://ladepris.pages.dev/.
 
 ## Lokal oppstart
@@ -49,6 +49,8 @@ npm run prices:update
 ```
 
 Kilder som kun viser pris på fysisk lader eller i app, merkes eksplisitt som manuelle. Et manglende tall skal aldri erstattes med gjetning eller et gammelt tredjepartstall.
+
+Når en operatør ikke publiserer en tilsvarende nettpris, kan Norsk elbilforenings ukentlige oversikt brukes som fallback. Slike priser lagrer både kildens oppdateringstidspunkt og statusen `fallback`, og kan derfor ikke forveksles med dagens operatørverifiserte priser.
 
 Se [docs/data-pipeline.md](docs/data-pipeline.md) for flyten og [docs/nobil-application.txt](docs/nobil-application.txt) for søknadsteksten.
 

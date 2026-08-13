@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-13T12:49:37.861Z",
+  "generatedAt": "2026-08-13T13:13:18.960Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-08-13T12:49:37.307Z",
+      "fetchedAt": "2026-08-13T13:13:11.969Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -20,7 +20,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "registered",
@@ -33,25 +34,42 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
     {
       "id": "eon-clever",
       "name": "E.ON Drive & Clever",
-      "sourceUrl": "https://eondrive.no/ladestasjoner/",
-      "reason": "Offisiell nettside viser ikke en nasjonal drop-in-pris.",
-      "status": "manual",
-      "fetchedAt": null,
-      "rates": []
+      "status": "fallback",
+      "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
+      "fetchedAt": "2026-08-13T13:13:18.960Z",
+      "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
+      "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Dagtid, høyeste regionspris (Elbilforeningen)",
+          "amount": 6,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null,
+          "region": "highest-national"
+        }
+      ]
     },
     {
       "id": "eviny",
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-08-13T12:49:37.089Z",
+      "fetchedAt": "2026-08-13T13:13:12.271Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -64,7 +82,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
@@ -73,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-08-13T12:49:37.120Z",
+      "fetchedAt": "2026-08-13T13:13:12.000Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -86,7 +105,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "registered",
@@ -99,7 +119,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
@@ -108,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-08-13T12:49:37.177Z",
+      "fetchedAt": "2026-08-13T13:13:12.446Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -121,7 +142,8 @@
             "maxKw": 120
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "drop-in",
@@ -134,7 +156,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
@@ -143,7 +166,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-08-13T12:49:37.860Z",
+      "fetchedAt": "2026-08-13T13:13:12.626Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -159,7 +182,8 @@
             "startTime": "06:00",
             "endTime": "00:00"
           },
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "registered",
@@ -175,7 +199,8 @@
             "startTime": "06:00",
             "endTime": "00:00"
           },
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "drop-in",
@@ -191,7 +216,8 @@
             "startTime": "00:00",
             "endTime": "06:00"
           },
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "registered",
@@ -207,7 +233,8 @@
             "startTime": "00:00",
             "endTime": "06:00"
           },
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
@@ -216,7 +243,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-08-13T12:49:37.102Z",
+      "fetchedAt": "2026-08-13T13:13:11.988Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -229,7 +256,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
@@ -238,7 +266,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-08-13T12:49:37.207Z",
+      "fetchedAt": "2026-08-13T13:13:12.020Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -251,25 +279,54 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         }
       ]
     },
     {
       "id": "ragde-charge",
       "name": "Ragde Charge",
+      "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "reason": "Offisiell nettside viser ikke en maskinlesbar nasjonal pris.",
-      "status": "manual",
-      "fetchedAt": null,
-      "rates": []
+      "fetchedAt": "2026-08-13T13:13:13.050Z",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Lynlading Sør-Norge",
+          "amount": 5.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null,
+          "region": "south"
+        },
+        {
+          "customerType": "drop-in",
+          "label": "Lynlading Nord- og Midt-Norge",
+          "amount": 4.99,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null,
+          "region": "north-central"
+        }
+      ]
     },
     {
       "id": "recharge",
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-08-13T12:49:37.339Z",
+      "fetchedAt": "2026-08-13T13:13:12.254Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -282,7 +339,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": null
+          "monthlyFee": null,
+          "region": null
         },
         {
           "customerType": "subscription",
@@ -295,7 +353,8 @@
             "maxKw": null
           },
           "time": null,
-          "monthlyFee": 69
+          "monthlyFee": 69,
+          "region": null
         }
       ]
     },
@@ -311,11 +370,27 @@
     {
       "id": "uno-x",
       "name": "Uno-X",
-      "sourceUrl": "https://unox.no/lading/",
-      "reason": "Kortprisen publiseres på prismast og lader, ikke på nettsiden.",
-      "status": "manual",
-      "fetchedAt": null,
-      "rates": []
+      "status": "fallback",
+      "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
+      "fetchedAt": "2026-08-13T13:13:18.960Z",
+      "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
+      "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
+      "rates": [
+        {
+          "customerType": "drop-in",
+          "label": "Dagtid, høyeste regionspris (Elbilforeningen)",
+          "amount": 5.5,
+          "currency": "NOK",
+          "unit": "kWh",
+          "power": {
+            "minKw": 150,
+            "maxKw": null
+          },
+          "time": null,
+          "monthlyFee": null,
+          "region": "highest-national"
+        }
+      ]
     }
   ]
 }

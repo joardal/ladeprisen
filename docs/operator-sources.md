@@ -13,14 +13,17 @@ Ladeprisen bruker operatørenes egne, åpne prissider som primærkilder. Norsk e
 | Kople | https://www.kople.no/veiledning/ladepris | Drop-in, registrert og nattpris |
 | Lad Opp | https://ladopp.no/betaling/ | Hurtig-/lynlading |
 | Mer | https://no.mer.eco/ladenettverk/priser/ | Samme pris for drop-in og registrert |
+| Ragde Charge | https://ragde.no/charge/ | Regionale priser for Sør og Nord/Midt |
 | Recharge | https://rechargeinfra.com/no/ | Drop-in og abonnement |
+
+## Ukentlig fallback
+
+- E.ON Drive & Clever og Uno-X hentes fra Norsk elbilforenings Infogram.
+- Kildens eget `updatedAt` følger hvert tall.
+- Prisene er merket `fallback`, og beskrives som dagtid/høyeste regionspris.
 
 ## Krever særbehandling
 
 - Tesla varierer per stasjon og tidspunkt; egen Tesla-adapter brukes.
-- Uno-X viser kortprisen på prismast og fysisk lader, ikke på nettsiden.
-- E.ON Drive & Clever viser ikke en nasjonal norsk drop-in-pris på den offisielle nettsiden.
-- Ragde Charge viser ikke en maskinlesbar nasjonal pris på den offisielle nettsiden.
 
-Disse kildene skal stå uten pris inntil vi har en pålitelig stasjons-, app- eller direkte operatørkilde.
-
+Uno-X har et offentlig ladekart-endepunkt med 82 elektriske lokasjoner, men det inneholder foreløpig effekt og adresse, ikke kortpris. Appkilder kan vurderes dersom endepunktet er offentlig, stabilt og prisen gjelder samme betalingsmåte som vi viser.

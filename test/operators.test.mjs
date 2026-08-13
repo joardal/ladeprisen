@@ -1,8 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
-  htmlToText, parseCircleK, parseEviny, parseIonity, parseIshavsveien,
-  parseKople, parseLadOpp, parseMer, parseRecharge
+  htmlToText, parseCircleK, parseElbilReference, parseEviny, parseIonity, parseIshavsveien,
+  parseKople, parseLadOpp, parseMer, parseRagdeCharge, parseRecharge
 } from '../scripts/providers/operators.mjs'
 
 test('HTML ryddes til stabil tekst', () => {
@@ -48,6 +48,25 @@ test('Lad Opp og Mer leser sine hurtigladepriser', () => {
 test('Recharge leser drop-in og abonnement uten å blande produktene', () => {
   const html = '<h4>Recharge MOVE</h4><p>Kr 4,79/kWt med et abonnement på 69,- per mnd.</p><h4>Recharge FLOW</h4><p>Kr 6,49/kWt</p><h4>Drop-in</h4><p>For spontane ladere.</p><p>Kr 6,49/kWt</p>'
   assert.deepEqual(parseRecharge(html).map(rate => rate.amount), [6.49, 4.79])
+})
+
+test('Ragde Charge leser regionale priser fra offisiell side', () => {
+  const html = '<h3>Priser for Lynlading</h3><h4>Oslo &amp; Sør-Norge fra</h4><p>5,99 kr/kWh</p><h4>Nord &amp; Midt Norge fra</h4><p>4,99 kr/kWh</p><h3>Priser for Destinasjonslading</h3>'
+  const rates = parseRagdeCharge(html)
+  assert.deepEqual(rates.map(rate => [rate.amount, rate.region]), [[5.99, 'south'], [4.99, 'north-central']])
+})
+
+test('Elbilforeningens Infogram leses med kildedato', () => {
+  const rows = [
+    [{ value: 'Operatør' }, null],
+    ...['Circle K', 'Eviny', 'E.ON Drive & Clever', 'Ionity', 'Ishavsveien', 'Kople', 'Lad Opp', 'Mer', 'Ragde Charge', 'Recharge', 'Tesla*', 'Uno-X']
+      .map((name, index) => [{ value: name }, { value: String(4 + index / 10).replace('.', ',') }])
+  ]
+  const payload = { updatedAt: '2026-08-05T08:06:51.000Z', elements: { content: { nested: { data: [rows] } } } }
+  const result = parseElbilReference(`<script>window.infographicData=${JSON.stringify(payload)};</script>`)
+  assert.equal(result.prices['E.ON Drive & Clever'], 4.2)
+  assert.equal(result.prices['Uno-X'], 5.1)
+  assert.equal(result.sourceUpdatedAt, '2026-08-05T08:06:51.000Z')
 })
 
 test('urimelige priser og manglende felt avvises', () => {

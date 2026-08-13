@@ -11,7 +11,7 @@ export function validateOperatorPrices (dataset) {
     assert(typeof operator.id === 'string' && operator.id, 'operatør-ID mangler')
     assert(!ids.has(operator.id), `duplikat operatør-ID ${operator.id}`)
     ids.add(operator.id)
-    assert(['current', 'stale', 'manual'].includes(operator.status), `${operator.id} har ugyldig status`)
+    assert(['current', 'fallback', 'stale', 'manual'].includes(operator.status), `${operator.id} har ugyldig status`)
     assert(typeof operator.sourceUrl === 'string' && operator.sourceUrl.startsWith('https://'), `${operator.id} mangler kilde-URL`)
     if (operator.status !== 'manual') {
       assert(Array.isArray(operator.rates) && operator.rates.length > 0, `${operator.id} mangler priser`)
@@ -23,4 +23,3 @@ export function validateOperatorPrices (dataset) {
   }
   return dataset
 }
-

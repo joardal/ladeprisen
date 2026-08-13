@@ -12,10 +12,13 @@ try {
   const sourceCount = Array.isArray(prices.operators)
     ? prices.operators.filter(operator => operator.status === 'current').length
     : 0
+  const fallbackCount = Array.isArray(prices.operators)
+    ? prices.operators.filter(operator => operator.status === 'fallback').length
+    : 0
   state.textContent = stationCount > 0
-    ? `${new Intl.NumberFormat('nb-NO').format(stationCount)} stasjoner · ${sourceCount} priskilder`
+    ? `${new Intl.NumberFormat('nb-NO').format(stationCount)} stasjoner · ${sourceCount + fallbackCount} priskilder`
     : sourceCount > 0
-      ? `${sourceCount} offisielle priskilder overvåkes`
+      ? `${sourceCount} offisielle + ${fallbackCount} kontrollkilder`
       : 'Datainnsamlingen klargjøres nå'
 } catch {
   state.textContent = 'Datainnsamlingen klargjøres nå'

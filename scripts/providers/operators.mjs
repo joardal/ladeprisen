@@ -36,7 +36,7 @@ function capture (text, pattern, label) {
   return amount(match[1])
 }
 
-function rate ({ customerType = 'drop-in', label, value, minKw = 50, maxKw = null, startTime = null, endTime = null, monthlyFee = null }) {
+function rate ({ customerType = 'drop-in', label, value, minKw = 50, maxKw = null, startTime = null, endTime = null, monthlyFee = null, region = null }) {
   return {
     customerType,
     label,
@@ -45,7 +45,8 @@ function rate ({ customerType = 'drop-in', label, value, minKw = 50, maxKw = nul
     unit: 'kWh',
     power: { minKw, maxKw },
     time: startTime || endTime ? { startTime, endTime } : null,
-    monthlyFee
+    monthlyFee,
+    region
   }
 }
 
@@ -112,6 +113,65 @@ export function parseRecharge (html) {
   ]
 }
 
+export function parseRagdeCharge (html) {
+  const text = htmlToText(html)
+  const section = text.match(/Priser for Lynlading([\s\S]{0,500}?)Priser for Destinasjonslad/i)?.[1]
+  if (!section) throw new Error('Fant ikke Ragde Charges lynladeseksjon')
+  return [
+    rate({ label: 'Lynlading Sør-Norge', value: capture(section, /Oslo\s*&\s*Sør-Norge\s+fra\s+([0-9]+[.,][0-9]{1,2})\s*kr\s*\/\s*kWh/i, 'Ragde Charge Sør-Norge'), minKw: 150, region: 'south' }),
+    rate({ label: 'Lynlading Nord- og Midt-Norge', value: capture(section, /Nord\s*&\s*Midt Norge\s+fra\s+([0-9]+[.,][0-9]{1,2})\s*kr\s*\/\s*kWh/i, 'Ragde Charge Nord/Midt'), minKw: 150, region: 'north-central' })
+  ]
+}
+
+export const ELBIL_REFERENCE_SOURCE = {
+  url: 'https://e.infogram.com/c6d0de48-c7d8-4442-9cef-14891837833b?src=embed',
+  pageUrl: 'https://elbil.no/dette-koster-hurtiglading/'
+}
+
+function cellValue (cell) {
+  return typeof cell === 'string' || typeof cell === 'number' ? String(cell) : cell?.value == null ? null : String(cell.value)
+}
+
+function findOperatorTable (node) {
+  if (Array.isArray(node)) {
+    const firstCell = cellValue(node?.[0]?.[0])
+    if (firstCell === 'Operatør') return node
+    for (const item of node) {
+      const found = findOperatorTable(item)
+      if (found) return found
+    }
+  } else if (node && typeof node === 'object') {
+    for (const value of Object.values(node)) {
+      const found = findOperatorTable(value)
+      if (found) return found
+    }
+  }
+  return null
+}
+
+export function parseElbilReference (html) {
+  const match = String(html).match(/window\.infographicData=({[\s\S]*?});<\/script>/)
+  if (!match) throw new Error('Fant ikke Elbilforeningens Infogram-data')
+  const payload = JSON.parse(match[1])
+  const table = findOperatorTable(payload)
+  if (!table) throw new Error('Fant ikke pristabellen i Elbilforeningens Infogram')
+  const prices = {}
+  for (const row of table.slice(1)) {
+    const name = cellValue(row?.[0])?.trim()
+    const rawPrice = cellValue(row?.[1])?.trim()
+    if (!name || !rawPrice) continue
+    prices[name] = amount(rawPrice)
+  }
+  if (Object.keys(prices).length < 8) throw new Error('Elbilforeningens pristabell var uventet kort')
+  return { prices, sourceUpdatedAt: payload.updatedAt ?? null }
+}
+
+export async function fetchElbilReference ({ fetchImpl = fetch, signal = AbortSignal.timeout(30_000) } = {}) {
+  const response = await fetchImpl(ELBIL_REFERENCE_SOURCE.url, { headers: DEFAULT_HEADERS, redirect: 'follow', signal })
+  if (!response.ok) throw new Error(`HTTP ${response.status}`)
+  return parseElbilReference(await response.text())
+}
+
 export const OPERATOR_SOURCES = [
   { id: 'circle-k', name: 'Circle K', url: 'https://www.circlek.no/lading/ladepriser', parse: parseCircleK },
   { id: 'eviny', name: 'Eviny', url: 'https://hurtiglading.eviny.no/', parse: parseEviny },
@@ -120,14 +180,17 @@ export const OPERATOR_SOURCES = [
   { id: 'kople', name: 'Kople', url: 'https://www.kople.no/veiledning/ladepris', parse: parseKople },
   { id: 'lad-opp', name: 'Lad Opp', url: 'https://ladopp.no/betaling/', parse: parseLadOpp },
   { id: 'mer', name: 'Mer', url: 'https://no.mer.eco/ladenettverk/priser/', parse: parseMer },
+  { id: 'ragde-charge', name: 'Ragde Charge', url: 'https://ragde.no/charge/', parse: parseRagdeCharge },
   { id: 'recharge', name: 'Recharge', url: 'https://rechargeinfra.com/no/', parse: parseRecharge }
 ]
 
 export const MANUAL_OPERATOR_SOURCES = [
-  { id: 'eon-clever', name: 'E.ON Drive & Clever', sourceUrl: 'https://eondrive.no/ladestasjoner/', reason: 'Offisiell nettside viser ikke en nasjonal drop-in-pris.' },
-  { id: 'ragde-charge', name: 'Ragde Charge', sourceUrl: 'https://ragde.no/charge/', reason: 'Offisiell nettside viser ikke en maskinlesbar nasjonal pris.' },
-  { id: 'tesla', name: 'Tesla', sourceUrl: 'https://www.tesla.com/no_no/findus/list/superchargers/Norway', reason: 'Prisene hentes per stasjon fra Tesla-adapteren.' },
-  { id: 'uno-x', name: 'Uno-X', sourceUrl: 'https://unox.no/lading/', reason: 'Kortprisen publiseres på prismast og lader, ikke på nettsiden.' }
+  { id: 'tesla', name: 'Tesla', sourceUrl: 'https://www.tesla.com/no_no/findus/list/superchargers/Norway', reason: 'Prisene hentes per stasjon fra Tesla-adapteren.' }
+]
+
+export const FALLBACK_OPERATOR_SOURCES = [
+  { id: 'eon-clever', name: 'E.ON Drive & Clever', referenceName: 'E.ON Drive & Clever' },
+  { id: 'uno-x', name: 'Uno-X', referenceName: 'Uno-X' }
 ]
 
 export async function fetchOperatorSource (source, { fetchImpl = fetch, signal = AbortSignal.timeout(30_000) } = {}) {

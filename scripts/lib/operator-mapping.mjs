@@ -33,11 +33,12 @@ export function applyOperatorPrices (stations, operatorDataset, operatorConfig) 
       }],
       power: sourceRate.power,
       monthlyFee: sourceRate.monthlyFee,
+      region: sourceRate.region,
       sourceUrl: source.sourceUrl,
+      sourceUpdatedAt: source.sourceUpdatedAt ?? null,
       fetchedAt: source.fetchedAt,
       stale: source.status === 'stale'
     }))
   }
   return stations
 }
-

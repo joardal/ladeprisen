@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="nb">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ladeprisen – finn den rimeligste hurtigladingen nær deg.">
+    <title>Ladeprisen – billigere hurtiglading</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Ladeprisen forsiden">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Ladeprisen</span>
+      </a>
+      <span class="status"><span></span> Under utvikling</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Prisjakt for hurtiglading</div>
+        <h1>Finn billigste hurtiglading <em>nær deg</em></h1>
+        <p class="lead">Ladeprisen samler norske ladestasjoner og dagens ladepriser på ett sted. Snart kan du sammenligne pris, effekt og avstand før du kjører.</p>
+        <div class="actions">
+          <a class="primary" href="#slik-fungerer-det">Se hvordan det virker</a>
+          <span class="data-state" id="data-state">Leser datastatus …</span>
+        </div>
+      </section>
+
+      <section class="steps" id="slik-fungerer-det" aria-labelledby="steps-title">
+        <div class="section-heading">
+          <span>Enklere valg</span>
+          <h2 id="steps-title">Prisen du trenger, uten omveier</h2>
+        </div>
+        <div class="cards">
+          <article><b>01</b><h3>Finn stasjoner</h3><p>Se hurtigladere rundt deg med effekt, operatør og avstand.</p></article>
+          <article><b>02</b><h3>Sammenlign pris</h3><p>Få nasjonale og lokasjonsbaserte priser i samme visning.</p></article>
+          <article><b>03</b><h3>Velg smart</h3><p>Åpne navigasjon til laderen som passer turen og lommeboka.</p></article>
+        </div>
+      </section>
+
+      <section class="source-note">
+        <div><span>Datagrunnlag</span><strong>NOBIL + operatørpriser</strong></div>
+        <p>Stasjonsdata vil krediteres NOBIL/Enova. Priser kontrolleres daglig mot operatørenes kilder.</p>
+      </section>
+    </main>
+
+    <footer><span>© <span id="year"></span> Ladeprisen</span><span>Bygges i Norge for norske elbilister.</span></footer>
+  </body>
+</html>
+

@@ -1,0 +1,21 @@
+Emne: Søknad om API-tilgang til NOBIL – Ladeprisen
+
+Hei,
+
+Jeg søker om API-tilgang til NOBIL for Ladeprisen, en norsk tjeneste under utvikling som skal gjøre det enklere for elbilister å sammenligne priser på hurtiglading.
+
+Planlagt nettadresse er https://ladeprisen.no. Domenet blir registrert så snart det er tilgjengelig, og kildekoden ligger foreløpig i et privat utviklingsrepo.
+
+NOBIL skal brukes som grunndata for norske ladestasjoner, blant annet navn, koordinater, operatør, effekt og kontakttyper. Prisdata hentes separat fra ladeoperatørenes egne kilder og kobles til stasjonene i vår egen normaliserte datamodell.
+
+Integrasjonen kjøres som en lokal, planlagt jobb omtrent én gang per døgn. Vi vil bruke NOBILs datadump for Norge, mellomlagre og bearbeide dataene, og publisere kun vår egen ferdig genererte JSON-fil til den statiske nettsiden. API-nøkkelen, direkte API-kall og rå API-svar blir ikke tilgjengelige for sluttbrukere eller nettleseren.
+
+Løsningen vil kreditere NOBIL/Enova og følge rettigheter og vilkår som følger med dataene.
+
+Gi gjerne beskjed hvis dere trenger mer informasjon, organisasjonsopplysninger eller en tilgjengelig testside før søknaden kan behandles.
+
+Med vennlig hilsen
+[Navn]
+[E-post]
+[Telefon, valgfritt]
+

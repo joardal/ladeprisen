@@ -1,0 +1,72 @@
+:root {
+  color-scheme: light;
+  --ink: #10251d;
+  --muted: #5f716a;
+  --paper: #f5f1e8;
+  --green: #087f5b;
+  --lime: #b6e76c;
+  --line: rgba(16, 37, 29, .14);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    radial-gradient(circle at 85% 12%, rgba(182, 231, 108, .38), transparent 27rem),
+    linear-gradient(rgba(16, 37, 29, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 37, 29, .035) 1px, transparent 1px);
+  background-size: auto, 48px 48px, 48px 48px;
+}
+
+.topbar, main, footer { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; }
+.brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
+.brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--ink); color: var(--lime); }
+.status { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .82rem; }
+.status span { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(8, 127, 91, .12); }
+
+.hero { min-height: 620px; display: grid; align-content: center; max-width: 900px; padding: 80px 0 100px; }
+.eyebrow, .section-heading span, .source-note span { color: var(--green); font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+h1 { max-width: 880px; margin: 18px 0 24px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.7rem, 8.7vw, 7.7rem); font-weight: 400; letter-spacing: -.065em; line-height: .89; }
+h1 em { color: var(--green); font-weight: inherit; }
+.lead { max-width: 650px; margin: 0; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.55; }
+.actions { display: flex; align-items: center; gap: 24px; margin-top: 36px; }
+.primary { padding: 14px 20px; border-radius: 999px; color: white; background: var(--ink); font-weight: 700; text-decoration: none; transition: transform .2s, background .2s; }
+.primary:hover { transform: translateY(-2px); background: var(--green); }
+.data-state { color: var(--muted); font-size: .85rem; }
+
+.steps { padding: 92px 0; border-top: 1px solid var(--line); }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 45px; }
+h2 { max-width: 650px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cards article { min-height: 240px; padding: 28px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.48); }
+.cards b { color: var(--green); font-size: .76rem; letter-spacing: .12em; }
+.cards h3 { margin: 58px 0 10px; font-size: 1.25rem; }
+.cards p { margin: 0; color: var(--muted); line-height: 1.55; }
+.source-note { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 38px 0 100px; border-top: 1px solid var(--line); }
+.source-note div { display: grid; gap: 8px; }
+.source-note strong { font-size: 1.3rem; }
+.source-note p { max-width: 550px; color: var(--muted); line-height: 1.5; }
+footer { display: flex; justify-content: space-between; padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+
+@media (max-width: 720px) {
+  .topbar, main, footer { width: min(100% - 28px, 1160px); }
+  .hero { min-height: auto; padding: 105px 0 120px; }
+  h1 { font-size: clamp(3.3rem, 17vw, 5.3rem); }
+  .actions, .section-heading, .source-note, footer { align-items: flex-start; flex-direction: column; }
+  .cards { grid-template-columns: 1fr; }
+  .cards article { min-height: 205px; }
+  .cards h3 { margin-top: 40px; }
+}
+

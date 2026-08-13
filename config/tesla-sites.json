@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "sites": [
+    {
+      "locationGuid": "335b4f24-4847-4c05-867b-792ddb08b180",
+      "name": "Oslo, Sentrum P-Hus",
+      "enabled": true
+    },
+    {
+      "locationGuid": "66d416ef-74ab-4d64-973c-342914b38400",
+      "name": "Oslo, Ullevaal",
+      "enabled": true
+    }
+  ]
+}
+

@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
   htmlToText, parseCircleK, parseElbilReference, parseEviny, parseIonity, parseIshavsveien,
-  parseKople, parseLadOpp, parseMer, parseRagdeCharge, parseRecharge
+  parseKople, parseLadOpp, parseMer, parsePorsche, parseRagdeCharge, parseRecharge
 } from '../scripts/providers/operators.mjs'
 
 test('HTML ryddes til stabil tekst', () => {
@@ -54,6 +54,14 @@ test('Ragde Charge leser regionale priser fra offisiell side', () => {
   const html = '<h3>Priser for Lynlading</h3><h4>Oslo &amp; Sør-Norge fra</h4><p>5,99 kr/kWh</p><h4>Nord &amp; Midt Norge fra</h4><p>4,99 kr/kWh</p><h3>Priser for Destinasjonslading</h3>'
   const rates = parseRagdeCharge(html)
   assert.deepEqual(rates.map(rate => [rate.amount, rate.region]), [[5.99, 'south'], [4.99, 'north-central']])
+})
+
+test('Porsche leser Charging Service DC-pris uten fast månedsavgift', () => {
+  const html = '<script>data={&quot;country&quot;:[0,{&quot;name&quot;:[0,&quot;Norge&quot;]}],&quot;defaultCountry&quot;:[0,true],&quot;basicFee&quot;:[0,&quot;0,00 NOK&quot;],&quot;ac&quot;:[0,&quot;4,99 NOK&quot;],&quot;dc&quot;:[0,&quot;5,99 NOK&quot;],&quot;preferred&quot;:[0,&quot;n/a&quot;],&quot;blockingFee&quot;:[0,&quot;2,50 NOK&quot;]}</script>'
+  const [rate] = parsePorsche(html)
+  assert.equal(rate.amount, 5.99)
+  assert.equal(rate.monthlyFee, null)
+  assert.equal(rate.customerType, 'drop-in')
 })
 
 test('Elbilforeningens Infogram leses med kildedato', () => {

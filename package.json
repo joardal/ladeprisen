@@ -9,10 +9,13 @@
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "data:update": "node scripts/update-data.mjs",
+    "data:update:local": "node --env-file=.env scripts/update-data.mjs",
+    "data:archive": "node scripts/archive-data.mjs",
     "data:validate": "node scripts/validate-data.mjs public/data/stations.json",
     "prices:update": "node scripts/update-operator-prices.mjs",
     "prices:validate": "node scripts/validate-operator-prices.mjs public/data/operator-prices.json",
+    "site:validate": "node scripts/validate-site-build.mjs",
     "test": "node --test",
-    "check": "npm test && npm run prices:validate && npm run build"
+    "check": "npm test && npm run prices:validate && npm run build && npm run site:validate"
   }
 }

@@ -9,10 +9,10 @@
     { "id": "kople", "name": "Kople", "aliases": ["kople"] },
     { "id": "lad-opp", "name": "Lad Opp", "aliases": ["lad opp", "ladopp"] },
     { "id": "mer", "name": "Mer", "aliases": ["mer norway", "grønn kontakt"] },
+    { "id": "porsche", "name": "Porsche", "aliases": ["porsche sales marketplace", "porsche sales & marketplace", "porsche"] },
     { "id": "ragde-charge", "name": "Ragde Charge", "aliases": ["ragde", "ragde charge"] },
     { "id": "recharge", "name": "Recharge", "aliases": ["recharge", "fortum charge & drive", "fortum charge and drive"] },
     { "id": "tesla", "name": "Tesla", "aliases": ["tesla"] },
     { "id": "uno-x", "name": "Uno-X", "aliases": ["uno-x", "uno x"] }
   ]
 }
-

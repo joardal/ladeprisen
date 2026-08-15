@@ -13,6 +13,7 @@ Ladeprisen bruker operatørenes egne, åpne prissider som primærkilder. Norsk e
 | Kople | https://www.kople.no/veiledning/ladepris | Drop-in, registrert og nattpris |
 | Lad Opp | https://ladopp.no/betaling/ | Hurtig-/lynlading |
 | Mer | https://no.mer.eco/ladenettverk/priser/ | Samme pris for drop-in og registrert |
+| Porsche | https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service | Charging Service DC-pris uten fast månedsgebyr |
 | Ragde Charge | https://ragde.no/charge/ | Regionale priser for Sør og Nord/Midt |
 | Recharge | https://rechargeinfra.com/no/ | Drop-in og abonnement |
 
@@ -24,6 +25,6 @@ Ladeprisen bruker operatørenes egne, åpne prissider som primærkilder. Norsk e
 
 ## Krever særbehandling
 
-- Tesla varierer per stasjon og tidspunkt; egen Tesla-adapter brukes.
+- Tesla varierer per stasjon og tidspunkt. `locationGUID` oppdages automatisk fra NOBIL, og egen Tesla-adapter henter Tesla-bilpris, medlemspris og pris for andre biler for hver hurtigladestasjon.
 
 Uno-X har et offentlig ladekart-endepunkt med 82 elektriske lokasjoner, men det inneholder foreløpig effekt og adresse, ikke kortpris. Appkilder kan vurderes dersom endepunktet er offentlig, stabilt og prisen gjelder samme betalingsmåte som vi viser.

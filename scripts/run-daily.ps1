@@ -12,7 +12,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 try {
-  npm run data:update
+  npm run data:update:local
   if ($LASTEXITCODE -ne 0) {
     Write-Warning 'Stasjonsoppdateringen kunne ikke kjøres. Operatørprisene blir fortsatt kontrollert og kan publiseres.'
   }
@@ -24,18 +24,23 @@ if ($LASTEXITCODE -ne 0) {
   throw 'Kontrollene feilet; ingenting blir publisert.'
 }
 
+npm run data:archive
+if ($LASTEXITCODE -ne 0) {
+  throw 'Arkivering av dagens validerte JSON-filer feilet; ingenting blir publisert.'
+}
+
 if (-not $Publish) {
   Write-Host 'Data er oppdatert og kontrollert lokalt. Bruk -Publish for å committe og pushe stations.json.'
   exit 0
 }
 
-$changed = git status --porcelain -- public/data/stations.json public/data/operator-prices.json
+$changed = git status --porcelain -- public/data/stations.json public/data/operator-prices.json public/ladepriser public/sitemap.xml public/robots.txt public/index.html
 if (-not $changed) {
   Write-Host 'Ingen dataendringer; ingenting å publisere.'
   exit 0
 }
 
-git add -- public/data/stations.json public/data/operator-prices.json
+git add -- public/data/stations.json public/data/operator-prices.json public/ladepriser public/sitemap.xml public/robots.txt public/index.html
 $date = Get-Date -Format 'yyyy-MM-dd'
 git commit -m "data: oppdater ladepriser $date"
 git push origin main

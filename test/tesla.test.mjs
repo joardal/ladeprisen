@@ -21,6 +21,11 @@ test('Tesla-priser normaliseres for drop-in og medlem', () => {
   assert.equal(result.prices[1].customerType, 'member')
 })
 
+test('Tesla-bilpris normaliseres separat', () => {
+  const result = normalizeTeslaSite(rawSite, '2026-01-01T00:00:00.000Z', { vehicleMakeType: 'TESLA' })
+  assert.deepEqual(result.prices.map(price => price.customerType), ['tesla-vehicle'])
+})
+
 test('tokenfornyelse sender form-data og beholder rotert token', async () => {
   let request
   const fetchImpl = async (url, options) => {
@@ -46,4 +51,3 @@ test('Tesla-kallet bruker bearer-token uten å legge det i URL eller feilmelding
   assert.equal(request.url.includes(secret), false)
   assert.equal(request.options.headers.Authorization, `Bearer ${secret}`)
 })
-

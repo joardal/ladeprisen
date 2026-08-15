@@ -79,13 +79,15 @@ function normalizePrice (rate, customerType) {
   }
 }
 
-export function normalizeTeslaSite (site, fetchedAt = new Date().toISOString()) {
+export function normalizeTeslaSite (site, fetchedAt = new Date().toISOString(), { vehicleMakeType = 'NON_TESLA' } = {}) {
   const details = site?.siteStatic
   if (!details?.locationGUID || !details?.centroid) throw new Error('Tesla-svaret mangler stasjonsdetaljer')
-  const prices = [
-    normalizePrice(site.pricing?.userRates, 'drop-in'),
-    normalizePrice(site.pricing?.memberRates, 'member')
-  ].filter(Boolean)
+  const prices = vehicleMakeType === 'TESLA'
+    ? [normalizePrice(site.pricing?.userRates, 'tesla-vehicle')].filter(Boolean)
+    : [
+        normalizePrice(site.pricing?.userRates, 'drop-in'),
+        normalizePrice(site.pricing?.memberRates, 'member')
+      ].filter(Boolean)
   if (prices.length === 0) throw new Error('Tesla-svaret mangler priser')
   return {
     locationGuid: details.locationGUID,
@@ -125,7 +127,7 @@ export async function refreshTeslaTokens ({ refreshToken, fetchImpl = fetch, sig
   }
 }
 
-export async function fetchTeslaSite ({ accessToken, locationGuid, country = 'NO', language = 'nb', fetchImpl = fetch, signal = AbortSignal.timeout(30_000) }) {
+export async function fetchTeslaSite ({ accessToken, locationGuid, vehicleMakeType = 'NON_TESLA', country = 'NO', language = 'nb', fetchImpl = fetch, signal = AbortSignal.timeout(30_000) }) {
   if (!nonEmptyString(accessToken)) throw new Error('Tesla access token mangler')
   if (!nonEmptyString(locationGuid)) throw new Error('Tesla locationGUID mangler')
   const operationName = 'getChargingSiteInformation'
@@ -150,7 +152,7 @@ export async function fetchTeslaSite ({ accessToken, locationGuid, country = 'NO
       query: SITE_INFORMATION_QUERY,
       variables: {
         id: { id: locationGuid, type: 'LOCATION_GUID' },
-        vehicleMakeType: 'NON_TESLA',
+        vehicleMakeType,
         deviceCountry: country,
         deviceLanguage: language
       }
@@ -162,6 +164,5 @@ export async function fetchTeslaSite ({ accessToken, locationGuid, country = 'NO
   if (payload?.errors?.length) throw new Error('Tesla returnerte en GraphQL-feil')
   const site = payload?.data?.charging?.site
   if (!site) throw new Error('Tesla returnerte ingen stasjon')
-  return normalizeTeslaSite(site)
+  return normalizeTeslaSite(site, new Date().toISOString(), { vehicleMakeType })
 }
-

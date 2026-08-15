@@ -34,7 +34,8 @@ function combine (nobil, tesla, operatorDataset, operatorConfig) {
   const stations = structuredClone(nobil.stations)
   applyOperatorPrices(stations, operatorDataset, operatorConfig)
   for (const site of tesla?.sites ?? []) {
-    let match = stations
+    let match = stations.find(station => station.sourceIds?.teslaLocationGuid === site.locationGuid)
+    match ??= stations
       .filter(isTeslaStation)
       .map(station => ({ station, distance: distanceKm(station.location, site.location) }))
       .filter(candidate => candidate.distance <= 1.5)
@@ -68,7 +69,7 @@ function combine (nobil, tesla, operatorDataset, operatorConfig) {
   if (tesla?.sites?.length) {
     sources.push({ id: 'tesla', name: 'Tesla', fetchedAt: tesla.fetchedAt, rights: null, apiVersion: null })
   }
-  return validateDataset({ schemaVersion: 1, generatedAt: new Date().toISOString(), sources, stations })
+  return validateDataset({ schemaVersion: 1, generatedAt: new Date().toISOString(), stats: nobil.stats ?? null, sources, stations })
 }
 
 async function updateNobil () {
@@ -94,7 +95,8 @@ async function updateNobil () {
 
 async function getTeslaAccessToken () {
   const stored = await readJson(paths.tokenFile, {})
-  const refreshToken = process.env.TESLA_REFRESH_TOKEN || stored.refreshToken
+  // A refresh can rotate the token. Prefer the newest locally stored value on later runs.
+  const refreshToken = stored.refreshToken || process.env.TESLA_REFRESH_TOKEN
   if (refreshToken) {
     const refreshed = await refreshTeslaTokens({ refreshToken })
     await writeJsonAtomic(paths.tokenFile, refreshed)
@@ -104,7 +106,28 @@ async function getTeslaAccessToken () {
   return process.env.TESLA_ACCESS_TOKEN || process.env.TESLA_TOKEN || stored.accessToken || null
 }
 
-async function updateTesla () {
+function teslaTargets (nobil, configuredSites) {
+  const targets = new Map()
+  for (const station of nobil.stations) {
+    const locationGuid = station.sourceIds?.teslaLocationGuid
+    if (locationGuid) targets.set(locationGuid, { locationGuid, name: station.name, enabled: true })
+  }
+  for (const site of configuredSites.filter(site => site.enabled !== false)) targets.set(site.locationGuid, site)
+  return [...targets.values()]
+}
+
+async function runWithConcurrency (items, concurrency, worker) {
+  let cursor = 0
+  const runners = Array.from({ length: Math.min(concurrency, items.length) }, async () => {
+    while (cursor < items.length) {
+      const index = cursor++
+      await worker(items[index], index)
+    }
+  })
+  await Promise.all(runners)
+}
+
+async function updateTesla (nobil) {
   const cached = await readJson(paths.teslaCache, { fetchedAt: null, sites: [] })
   let accessToken
   try {
@@ -119,18 +142,31 @@ async function updateTesla () {
   }
 
   const config = await readJson(paths.teslaConfig)
+  const targets = teslaTargets(nobil, config.sites)
   const previous = new Map(cached.sites.map(site => [site.locationGuid, site]))
   let successes = 0
-  for (const configuredSite of config.sites.filter(site => site.enabled !== false)) {
+  let failures = 0
+  const failureSamples = []
+  const concurrency = Math.max(1, Math.min(6, Number(process.env.TESLA_FETCH_CONCURRENCY) || 4))
+  await runWithConcurrency(targets, concurrency, async configuredSite => {
     try {
-      const site = await fetchTeslaSite({ accessToken, locationGuid: configuredSite.locationGuid })
+      const [nonTeslaSite, teslaVehicleSite] = await Promise.all([
+        fetchTeslaSite({ accessToken, locationGuid: configuredSite.locationGuid, vehicleMakeType: 'NON_TESLA' }),
+        fetchTeslaSite({ accessToken, locationGuid: configuredSite.locationGuid, vehicleMakeType: 'TESLA' })
+      ])
+      const site = {
+        ...nonTeslaSite,
+        prices: [...nonTeslaSite.prices, ...teslaVehicleSite.prices]
+      }
       previous.set(site.locationGuid, site)
       successes += 1
-      console.log(`Tesla: pris oppdatert for ${configuredSite.name}.`)
     } catch (error) {
-      console.warn(`Tesla: beholdt tidligere data for ${configuredSite.name} (${error.message}).`)
+      failures += 1
+      if (failureSamples.length < 5) failureSamples.push(`${configuredSite.name}: ${error.message}`)
     }
-  }
+  })
+  console.log(`Tesla: ${successes} av ${targets.length} stasjoner oppdatert${failures ? `, ${failures} feilet` : ''}.`)
+  for (const sample of failureSamples) console.warn(`Tesla: ${sample}`)
   const result = { fetchedAt: successes ? new Date().toISOString() : cached.fetchedAt, sites: [...previous.values()] }
   if (successes) await writeJsonAtomic(paths.teslaCache, result)
   return result
@@ -140,7 +176,7 @@ async function main () {
   const operatorDataset = await readJson(paths.operatorPrices)
   const operatorConfig = await readJson(paths.operatorConfig)
   const nobil = await updateNobil()
-  const tesla = await updateTesla()
+  const tesla = await updateTesla(nobil)
   const dataset = combine(nobil, tesla, operatorDataset, operatorConfig)
   await writeJsonAtomic(paths.publicDataset, dataset)
   console.log(`Ferdig: ${dataset.stations.length} stasjoner skrevet til public/data/stations.json.`)

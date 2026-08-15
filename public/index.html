@@ -3,8 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ladeprisen – finn den rimeligste hurtigladingen nær deg.">
-    <title>Ladeprisen – billigere hurtiglading</title>
+    <meta name="description" content="Finn og sammenlign priser på hurtiglading i Norge.">
+    <meta name="theme-color" content="#0b251d">
+    <!-- build:seo --><link rel="canonical" href="https://ladepris.pages.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ladeprisen">
+    <meta property="og:url" content="https://ladepris.pages.dev/"><!-- /build:seo -->
+    <title>Ladeprisen – finn billig hurtiglading nær deg</title>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://tile.openstreetmap.org">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles.css">
     <script type="module" src="/app.js"></script>
   </head>
@@ -14,39 +22,151 @@
         <span class="brand-mark" aria-hidden="true">L</span>
         <span>Ladeprisen</span>
       </a>
-      <span class="status"><span></span> Under utvikling</span>
+      <div class="topbar-meta">
+        <a class="city-directory-link" href="/ladepriser/">Ladepriser per by</a>
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="data-state">Laster ladestasjoner …</span>
+      </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="eyebrow">Prisjakt for hurtiglading</div>
-        <h1>Finn billigste hurtiglading <em>nær deg</em></h1>
-        <p class="lead">Ladeprisen samler norske ladestasjoner og dagens ladepriser på ett sted. Snart kan du sammenligne pris, effekt og avstand før du kjører.</p>
-        <div class="actions">
-          <a class="primary" href="#slik-fungerer-det">Se hvordan det virker</a>
-          <span class="data-state" id="data-state">Leser datastatus …</span>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Prisjakt for hurtiglading</p>
+          <h1 id="hero-title">Finn billigst ladepris <em>i ditt område</em></h1>
+          <p class="lead">Søk etter et sted eller bruk posisjonen din. Vi viser de tre rimeligste hurtigladerne i nærheten.</p>
+          <form class="place-finder" id="place-form" role="search">
+            <label class="sr-only" for="place-search">Søk etter sted</label>
+            <input id="place-search" type="search" autocomplete="address-level2" placeholder="Søk etter sted, for eksempel Oslo">
+            <button class="place-submit" type="submit">Finn priser</button>
+            <button class="place-locate" id="hero-locate-button" type="button"><span aria-hidden="true">⌖</span> Bruk min posisjon</button>
+          </form>
+        </div>
+        <dl class="hero-stats" aria-label="Datastatus">
+          <div><dt id="total-stations">–</dt><dd>hurtigladestasjoner</dd></div>
+          <div><dt>Daglig</dt><dd>priskontroll</dd></div>
+        </dl>
+      </section>
+
+      <section class="quick-compare" aria-labelledby="nearby-title">
+        <div class="quick-head">
+          <div>
+            <p class="eyebrow">Billigst nær deg</p>
+            <h2 id="nearby-title">Billigste ladepris i ditt område</h2>
+          </div>
+          <div class="nearby-controls">
+            <label>Effekt
+              <select id="nearby-power">
+                <option value="0" selected>Alle</option>
+                <option value="50">50+ kW</option>
+                <option value="150">150+ kW</option>
+                <option value="300">300+ kW</option>
+              </select>
+            </label>
+            <label>Innenfor
+              <select id="nearby-radius">
+                <option value="10">10 km</option>
+                <option value="30" selected>30 km</option>
+                <option value="50">50 km</option>
+                <option value="100">100 km</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p class="area-status" id="area-status">Bruk posisjonen din eller søk etter et sted for å se de billigste laderne.</p>
+        <div class="price-lists">
+          <article class="price-list-panel">
+            <div class="list-title"><span class="driver-icon" aria-hidden="true">T</span><div><h3>For Tesla-eiere</h3><p>Tesla-bilpris på Supercharger, drop-in ellers</p></div></div>
+            <ol class="nearby-list" id="tesla-nearby-list"><li class="nearby-placeholder">Venter på område …</li></ol>
+          </article>
+          <article class="price-list-panel">
+            <div class="list-title"><span class="driver-icon other" aria-hidden="true">↗</span><div><h3>For andre biler</h3><p>Inkluderer åpne Tesla-stasjoner med pris for andre biler</p></div></div>
+            <ol class="nearby-list" id="other-nearby-list"><li class="nearby-placeholder">Venter på område …</li></ol>
+          </article>
+        </div>
+        <p class="price-gap" id="price-gap" hidden></p>
+      </section>
+
+      <section class="explorer" aria-labelledby="explorer-title">
+        <div class="sidebar">
+          <div class="sidebar-head">
+            <div>
+              <p class="eyebrow">Se alle ladere</p>
+              <h2 id="explorer-title">Kart og detaljer</h2>
+            </div>
+            <button class="locate-button" id="locate-button" type="button">
+              <span aria-hidden="true">⌖</span> Min posisjon
+            </button>
+          </div>
+
+          <div class="search-wrap">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+            <label class="sr-only" for="search">Søk etter sted, stasjon eller operatør</label>
+            <input id="search" type="search" autocomplete="off" placeholder="Søk sted, stasjon eller operatør">
+          </div>
+
+          <div class="filters" aria-label="Filtrer stasjoner">
+            <label>
+              <span>Minimum effekt</span>
+              <select id="power-filter">
+                <option value="50">50+ kW</option>
+                <option value="150">150+ kW</option>
+                <option value="300">300+ kW</option>
+              </select>
+            </label>
+            <label>
+              <span>Sorter etter</span>
+              <select id="sort-order">
+                <option value="price">Lavest pris</option>
+                <option value="distance">Nærmest</option>
+                <option value="power">Høyest effekt</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="price-toggle">
+            <input id="priced-only" type="checkbox">
+            <span aria-hidden="true"></span>
+            Vis bare stasjoner med offentlig pris
+          </label>
+
+          <div class="result-summary" aria-live="polite">
+            <strong id="result-count">Laster …</strong>
+            <button id="reset-filters" type="button">Nullstill</button>
+          </div>
+
+          <div class="station-list" id="station-list" aria-busy="true"></div>
+        </div>
+
+        <div class="map-wrap">
+          <div id="map" role="application" aria-label="Kart over hurtigladestasjoner i Norge"></div>
+          <div class="map-legend" aria-label="Kartforklaring">
+            <span><i class="cheap"></i> Under 5 kr</span>
+            <span><i class="medium"></i> 5–6 kr</span>
+            <span><i class="high"></i> Over 6 kr</span>
+            <span><i class="unknown"></i> Ukjent</span>
+          </div>
+          <div class="map-message" id="map-message" hidden></div>
         </div>
       </section>
 
-      <section class="steps" id="slik-fungerer-det" aria-labelledby="steps-title">
-        <div class="section-heading">
-          <span>Enklere valg</span>
-          <h2 id="steps-title">Prisen du trenger, uten omveier</h2>
+      <section class="trust-note" aria-label="Om datagrunnlaget">
+        <div>
+          <p class="eyebrow">Åpent og etterprøvbart</p>
+          <h2>Pris med kilde.<br>Stasjon med posisjon.</h2>
         </div>
-        <div class="cards">
-          <article><b>01</b><h3>Finn stasjoner</h3><p>Se hurtigladere rundt deg med effekt, operatør og avstand.</p></article>
-          <article><b>02</b><h3>Sammenlign pris</h3><p>Få nasjonale og lokasjonsbaserte priser i samme visning.</p></article>
-          <article><b>03</b><h3>Velg smart</h3><p>Åpne navigasjon til laderen som passer turen og lommeboka.</p></article>
+        <div class="trust-copy">
+          <p>Stasjonsdata kommer fra NOBIL. Prisene hentes fra operatørenes egne sider, med tydelig merking når Norsk elbilforening brukes som kontrollkilde.</p>
+          <p>Pris kan endres før neste oppdatering. Kontroller alltid beløpet hos operatøren før du starter lading.</p>
         </div>
-      </section>
-
-      <section class="source-note">
-        <div><span>Datagrunnlag</span><strong>NOBIL + operatørpriser</strong></div>
-        <p>Stasjonsdata vil krediteres NOBIL/Enova. Priser kontrolleres daglig mot operatørenes kilder.</p>
       </section>
     </main>
 
-    <footer><span>© <span id="year"></span> Ladeprisen</span><span>Bygges i Norge for norske elbilister.</span></footer>
+    <footer>
+      <span>© <span id="year"></span> Ladeprisen</span>
+      <span><a href="/ladepriser/">Ladepriser per by</a> · Stasjonsdata: <a href="https://info.nobil.no/" target="_blank" rel="noreferrer">NOBIL / Enova</a> (<a href="https://creativecommons.org/licenses/by/3.0/deed.no" target="_blank" rel="noreferrer">CC BY 3.0</a>) · Kart: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a></span>
+    </footer>
+
+    <noscript>Ladeprisen trenger JavaScript for å vise kart og ladestasjoner.</noscript>
   </body>
 </html>
-

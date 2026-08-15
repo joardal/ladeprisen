@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ladepris.pages.dev/sitemap.xml

@@ -123,6 +123,21 @@ export function parseRagdeCharge (html) {
   ]
 }
 
+export function parsePorsche (html) {
+  const decoded = decodeHtml(String(html))
+  const embeddedRows = [...decoded.matchAll(/"name":\[0,"Norge"\][\s\S]{0,700}?"defaultCountry":\[0,true\],"basicFee":\[0,"([^"]+)"\],"ac":\[0,"([^"]+)"\],"dc":\[0,"([^"]+)"\],"preferred":\[0,"([^"]+)"\],"blockingFee"/gi)]
+  const chargingService = embeddedRows.find(match => /^0[,.]00\s+NOK$/i.test(match[1]) && /^n\/a$/i.test(match[4]))
+  const rendered = htmlToText(html).match(/Norge\s+0[.,]00\s*NOK\s+[0-9]+[.,][0-9]{2}\s*NOK\s+([0-9]+[.,][0-9]{2})\s*NOK\s+n\/a/i)
+  const dcPrice = chargingService?.[3]?.match(/^([0-9]+[.,][0-9]{2})\s+NOK$/i)?.[1] ?? rendered?.[1]
+  if (!dcPrice) throw new Error('Fant ikke norsk DC-pris uten fast gebyr i Porsche Charging Service-prislisten')
+  return [rate({
+    label: 'Porsche Charging Service – DC',
+    value: amount(dcPrice),
+    minKw: 50,
+    monthlyFee: null
+  })]
+}
+
 export const ELBIL_REFERENCE_SOURCE = {
   url: 'https://e.infogram.com/c6d0de48-c7d8-4442-9cef-14891837833b?src=embed',
   pageUrl: 'https://elbil.no/dette-koster-hurtiglading/'
@@ -180,6 +195,7 @@ export const OPERATOR_SOURCES = [
   { id: 'kople', name: 'Kople', url: 'https://www.kople.no/veiledning/ladepris', parse: parseKople },
   { id: 'lad-opp', name: 'Lad Opp', url: 'https://ladopp.no/betaling/', parse: parseLadOpp },
   { id: 'mer', name: 'Mer', url: 'https://no.mer.eco/ladenettverk/priser/', parse: parseMer },
+  { id: 'porsche', name: 'Porsche', url: 'https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service', parse: parsePorsche },
   { id: 'ragde-charge', name: 'Ragde Charge', url: 'https://ragde.no/charge/', parse: parseRagdeCharge },
   { id: 'recharge', name: 'Recharge', url: 'https://rechargeinfra.com/no/', parse: parseRecharge }
 ]

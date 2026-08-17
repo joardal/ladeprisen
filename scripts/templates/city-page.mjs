@@ -76,8 +76,8 @@ function pageShell ({ title, description, canonical, body, siteUrl }) {
 }
 
 export function renderCityPage (model, siteUrl) {
-  const title = `Billigste hurtiglading i ${model.name} i dag | Ladeprisen`
-  const description = `Sammenlign dagens ladepriser i ${model.name}. Se de billigste hurtigladerne innenfor ${model.radiusKm} km for Tesla og andre elbiler, med effekt, avstand og navigasjon.`
+  const title = `Billigste ladestasjon i ${model.name} i dag | Ladeprisen`
+  const description = `Finn billigste ladestasjon og elbillader i ${model.name}. Sammenlign dagens ladepriser innenfor ${model.radiusKm} km, med effekt, avstand og navigasjon.`
   const canonical = absoluteUrl(siteUrl, `/ladepriser/${model.slug}/`)
   const priceRange = model.cheapest === null
     ? 'Pris ikke offentlig tilgjengelig'
@@ -86,8 +86,8 @@ export function renderCityPage (model, siteUrl) {
     <nav class="breadcrumbs" aria-label="Brødsmuler"><a href="/">Forside</a><span>›</span><a href="/ladepriser/">Ladepriser</a><span>›</span><span>${escapeHtml(model.name)}</span></nav>
     <section class="city-hero">
       <p class="city-eyebrow">Ladepriser oppdatert daglig</p>
-      <h1>Billigste hurtiglading <em>i ${escapeHtml(model.name)}</em></h1>
-      <p>Sammenlign offentlig tilgjengelige ladepriser innenfor ${model.radiusKm} km fra ${escapeHtml(model.name)} sentrum. Prisene er kontrollert ${escapeHtml(updatedDate.format(new Date(model.generatedAt)))}.</p>
+      <h1>Billigste ladestasjon <em>i ${escapeHtml(model.name)}</em></h1>
+      <p>Sammenlign pris på hurtiglading og elbilladere innenfor ${model.radiusKm} km fra ${escapeHtml(model.name)} sentrum. Prisene er kontrollert ${escapeHtml(updatedDate.format(new Date(model.generatedAt)))}.</p>
       <div class="city-facts">
         <div><strong>${number.format(model.stationCount)}</strong><span>hurtigladestasjoner</span></div>
         <div><strong>${number.format(model.radiusKm)} km</strong><span>fra sentrum</span></div>
@@ -97,7 +97,7 @@ export function renderCityPage (model, siteUrl) {
     <section class="city-comparison" aria-labelledby="comparison-title">
       <div class="city-section-head"><div><p class="city-eyebrow">Billigst akkurat nå</p><h2 id="comparison-title">Ladepriser i ${escapeHtml(model.name)}</h2></div><a class="city-map-link" href="/?sted=${encodeURIComponent(model.name)}">Åpne interaktivt kart →</a></div>
       <div class="city-lists">
-        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-bilpris på Supercharger, drop-in ellers</p></div></div><ol>${stationList(model.teslaTop, 'tesla')}</ol></article>
+        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div><ol>${stationList(model.teslaTop, 'tesla')}</ol></article>
         <article><div class="city-list-title"><span class="other">↗</span><div><h3>For andre biler</h3><p>Inkluderer Tesla-stasjoner med egen pris for andre biler</p></div></div><ol>${stationList(model.otherTop, 'other')}</ol></article>
       </div>
       ${model.priceDifference > 0 ? `<p class="city-insight">Dyreste kjente drop-in-pris innenfor ${model.radiusKm} km er <strong>${number.format(model.priceDifference)} % høyere</strong> enn den billigste.</p>` : ''}
@@ -111,13 +111,13 @@ export function renderCityPage (model, siteUrl) {
 }
 
 export function renderCityIndex (models, siteUrl) {
-  const title = 'Ladepriser i norske byer | Ladeprisen'
-  const description = 'Finn de billigste hurtigladerne i norske byer. Sammenlign oppdaterte ladepriser for Tesla og andre elbiler innenfor 10 km fra sentrum.'
+  const title = 'Ladepriser og ladestasjoner i norske byer | Ladeprisen'
+  const description = 'Finn billigste ladestasjon og elbillader i norske byer. Sammenlign oppdaterte ladepriser for Tesla og andre elbiler innenfor 10 km fra sentrum.'
   const canonical = absoluteUrl(siteUrl, '/ladepriser/')
   const cards = models.map(model => `<li><a href="/ladepriser/${model.slug}/"><span><strong>${escapeHtml(model.name)}</strong><small>${number.format(model.stationCount)} hurtigladestasjoner innenfor ${model.radiusKm} km</small></span><span>${model.cheapest === null ? 'Ukjent pris' : `fra ${priceNumber.format(model.cheapest)} kr/kWh`} →</span></a></li>`).join('')
   const body = `<main class="city-main city-index">
     <nav class="breadcrumbs" aria-label="Brødsmuler"><a href="/">Forside</a><span>›</span><span>Ladepriser</span></nav>
-    <section class="city-hero"><p class="city-eyebrow">Lokale ladepriser</p><h1>Finn ladepriser <em>der du er</em></h1><p>Velg en by og se dagens rimeligste hurtiglading innenfor 10 km fra sentrum. Alle sidene oppdateres fra samme kontrollerte prisgrunnlag.</p></section>
+    <section class="city-hero"><p class="city-eyebrow">Lokale ladepriser</p><h1>Finn billigste ladestasjon <em>der du er</em></h1><p>Velg en by og se dagens rimeligste elbilladere innenfor 10 km fra sentrum. Alle sidene oppdateres fra samme kontrollerte prisgrunnlag.</p></section>
     <section class="city-directory" aria-labelledby="city-list-title"><h2 id="city-list-title">Ladepriser i ${models.length} norske byer</h2><ul>${cards}</ul></section>
   </main>`
   return pageShell({ title, description, canonical, body, siteUrl })

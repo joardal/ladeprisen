@@ -40,7 +40,8 @@ test('byside-malen har lokal metadata, canonical og ingen kjent-pris-dekning', (
     stations: [station({ id: 'a', longitude: 10.76, prices: [price('drop-in', 5)] })]
   })
   const html = renderCityPage(model, 'https://example.no')
-  assert.match(html, /Billigste hurtiglading i Testby i dag/)
+  assert.match(html, /Billigste ladestasjon i Testby i dag/)
+  assert.match(html, /elbillader i Testby/)
   assert.match(html, /rel="canonical" href="https:\/\/example\.no\/ladepriser\/testby\/"/)
   assert.match(html, /10 km.*fra sentrum/s)
   assert.doesNotMatch(html, /med offentlig pris/)

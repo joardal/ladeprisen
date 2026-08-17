@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Finn og sammenlign priser på hurtiglading i Norge.">
+    <meta name="description" content="Finn billigste ladestasjon nær deg og sammenlign ladepris på hurtigladere og elbilladere i Norge.">
     <meta name="theme-color" content="#0b251d">
     <!-- build:seo --><link rel="canonical" href="https://ladepris.pages.dev/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Ladeprisen">
     <meta property="og:url" content="https://ladepris.pages.dev/"><!-- /build:seo -->
-    <title>Ladeprisen – finn billig hurtiglading nær deg</title>
+    <title>Billigste ladestasjon nær deg | Ladeprisen</title>
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://tile.openstreetmap.org">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
@@ -34,7 +34,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Prisjakt for hurtiglading</p>
           <h1 id="hero-title">Finn billigst ladepris <em>i ditt område</em></h1>
-          <p class="lead">Søk etter et sted eller bruk posisjonen din. Vi viser de tre rimeligste hurtigladerne i nærheten.</p>
+          <p class="lead">Finn en elbillader i nærheten og sammenlign ladepris. Vi viser de tre rimeligste ladestasjonene i området.</p>
           <form class="place-finder" id="place-form" role="search">
             <label class="sr-only" for="place-search">Søk etter sted</label>
             <input id="place-search" type="search" autocomplete="address-level2" placeholder="Søk etter sted, for eksempel Oslo">
@@ -76,7 +76,7 @@
         <p class="area-status" id="area-status">Bruk posisjonen din eller søk etter et sted for å se de billigste laderne.</p>
         <div class="price-lists">
           <article class="price-list-panel">
-            <div class="list-title"><span class="driver-icon" aria-hidden="true">T</span><div><h3>For Tesla-eiere</h3><p>Tesla-bilpris på Supercharger, drop-in ellers</p></div></div>
+            <div class="list-title"><span class="driver-icon" aria-hidden="true">T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div>
             <ol class="nearby-list" id="tesla-nearby-list"><li class="nearby-placeholder">Venter på område …</li></ol>
           </article>
           <article class="price-list-panel">

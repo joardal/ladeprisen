@@ -329,9 +329,13 @@ function setLocateBusy (busy) {
   elements.heroLocate.lastChild.textContent = busy ? ' Finner deg …' : ' Bruk min posisjon'
 }
 
-function locateUser () {
+function locateUser ({ silent = false } = {}) {
   if (!navigator.geolocation) {
-    showMessage('Nettleseren støtter ikke posisjonstjenester.')
+    if (!silent) showMessage('Nettleseren støtter ikke posisjonstjenester.')
+    return
+  }
+  if (!window.isSecureContext) {
+    if (!silent) showMessage('Posisjon krever en sikker HTTPS-forbindelse.')
     return
   }
   setLocateBusy(true)
@@ -340,8 +344,18 @@ function locateUser () {
     setUserLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }, 'din posisjon')
   }, error => {
     setLocateBusy(false)
-    showMessage(error.code === 1 ? 'Posisjonstilgang ble ikke gitt.' : 'Klarte ikke å finne posisjonen din.')
-  }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 300000 })
+    const messages = {
+      1: 'Posisjonstilgang er avslått. Tillat posisjon for denne nettsiden i nettleserens innstillinger, og prøv igjen.',
+      2: 'Posisjonen er ikke tilgjengelig akkurat nå. Kontroller at stedstjenester er slått på, og prøv igjen.',
+      3: 'Det tok for lang tid å finne posisjonen. Prøv igjen eller søk etter et sted.'
+    }
+    if (!silent) showMessage(messages[error.code] || 'Klarte ikke å finne posisjonen din.')
+  }, { enableHighAccuracy: false, timeout: 20000, maximumAge: 600000 })
+}
+
+function locateUserAutomatically () {
+  if (!navigator.geolocation || !window.isSecureContext) return
+  locateUser({ silent: true })
 }
 
 function findPlace (query) {
@@ -387,6 +401,8 @@ async function initialize () {
       elements.placeSearch.value = requestedPlace
       const place = findPlace(requestedPlace)
       if (place) setUserLocation(place.location, place.label)
+    } else {
+      locateUserAutomatically()
     }
   } catch (error) {
     console.error(error)
@@ -408,8 +424,8 @@ elements.sort.addEventListener('change', () => {
   render()
 })
 elements.pricedOnly.addEventListener('change', render)
-elements.locate.addEventListener('click', locateUser)
-elements.heroLocate.addEventListener('click', locateUser)
+elements.locate.addEventListener('click', () => locateUser())
+elements.heroLocate.addEventListener('click', () => locateUser())
 elements.nearbyRadius.addEventListener('change', () => {
   if (!userLocation) return
   const label = elements.areaStatus.textContent.match(/fra (.+)\.$/)?.[1] || 'valgt sted'

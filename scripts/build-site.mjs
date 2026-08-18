@@ -39,6 +39,22 @@ for (const model of cityModels) {
   const directory = resolve(cityDirectory, model.slug)
   await mkdir(directory, { recursive: true })
   await writeFile(resolve(directory, 'index.html'), renderCityPage(model, siteUrl), 'utf8')
+  const clientData = {
+    generatedAt: model.generatedAt,
+    city: { name: model.name, slug: model.slug, latitude: model.latitude, longitude: model.longitude },
+    radiusKm: model.radiusKm,
+    stations: model.stations.map(station => ({
+      id: station.id,
+      name: station.name,
+      location: station.location,
+      address: station.address,
+      operator: station.operator,
+      prices: station.prices,
+      maxPower: station.maxPower,
+      distance: station.distance
+    }))
+  }
+  await writeFile(resolve(directory, 'data.json'), `${JSON.stringify(clientData)}\n`, 'utf8')
 }
 await writeFile(resolve(publicDirectory, 'sitemap.xml'), renderSitemap(cityModels, siteUrl, dataset.generatedAt), 'utf8')
 await writeFile(resolve(publicDirectory, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`, 'utf8')

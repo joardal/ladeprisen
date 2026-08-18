@@ -7,7 +7,7 @@ Ladeprisen skal gjøre det enkelt å finne den rimeligste hurtigladingen i nærh
 - Tesla-priser: alle Tesla-hurtigladestasjoner oppdages fra NOBIL, med Tesla-bilpris og egen pris for andre biler der stasjonen faktisk er åpen for dem.
 - NOBIL: aktiv datadump med offentlig tilgjengelige norske hurtigladestasjoner på minst 50 kW.
 - Operatørpriser: ti åpne, offisielle kilder og to tydelig merkede kontrollkilder oppdateres automatisk.
-- Kart, søk, effektfilter, GPS-sortering og navigasjonslenker er klare lokalt.
+- Kart, søk, effektfilter, GPS-sortering, navigasjonslenker og tidsvalg for pris nå eller etter kl. 23 er klare.
 - Tretti statiske bysider med 10 km radius, lokale topplister, canonical-metadata, internlenker og automatisk sitemap bygges fra én felles mal.
 - Produksjonssiden ligger på https://ladeprisen.no/.
 

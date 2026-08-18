@@ -47,7 +47,7 @@ function stationList (stations, driver) {
   </li>`).join('')
 }
 
-function pageShell ({ title, description, canonical, body, siteUrl }) {
+function pageShell ({ title, description, canonical, body, siteUrl, script = '' }) {
   return `<!doctype html>
 <html lang="nb">
   <head>
@@ -71,6 +71,7 @@ function pageShell ({ title, description, canonical, body, siteUrl }) {
     </header>
     ${body}
     <footer class="city-footer"><span>© ${new Date().getFullYear()} Ladeprisen</span><span>Stasjonsdata: <a href="https://info.nobil.no/">NOBIL / Enova</a> · <a href="${siteUrl}">Finn ladere i hele Norge</a></span></footer>
+${script ? `    ${script}\n` : ''}
   </body>
 </html>`
 }
@@ -91,23 +92,31 @@ export function renderCityPage (model, siteUrl) {
       <div class="city-facts">
         <div><strong>${number.format(model.stationCount)}</strong><span>hurtigladestasjoner</span></div>
         <div><strong>${number.format(model.radiusKm)} km</strong><span>fra sentrum</span></div>
-        <div><strong>${escapeHtml(priceRange)}</strong><span>kjent drop-in-pris</span></div>
+        <div><strong id="city-price-range">${escapeHtml(priceRange)}</strong><span>kjent drop-in-pris</span></div>
       </div>
     </section>
     <section class="city-comparison" aria-labelledby="comparison-title">
-      <div class="city-section-head"><div><p class="city-eyebrow">Billigst akkurat nå</p><h2 id="comparison-title">Ladepriser i ${escapeHtml(model.name)}</h2></div><a class="city-map-link" href="/?sted=${encodeURIComponent(model.name)}">Åpne interaktivt kart →</a></div>
-      <div class="city-lists">
-        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div><ol>${stationList(model.teslaTop, 'tesla')}</ol></article>
-        <article><div class="city-list-title"><span class="other">↗</span><div><h3>For andre biler</h3><p>Inkluderer Tesla-stasjoner med egen pris for andre biler</p></div></div><ol>${stationList(model.otherTop, 'other')}</ol></article>
+      <div class="city-section-head"><div><p class="city-eyebrow" id="city-price-eyebrow">Billigst akkurat nå</p><h2 id="comparison-title">Ladepriser i ${escapeHtml(model.name)}</h2></div><a class="city-map-link" id="city-map-link" href="/?sted=${encodeURIComponent(model.name)}">Åpne interaktivt kart →</a></div>
+      <div class="city-price-time-row">
+        <span>Ladetid</span>
+        <div class="city-price-time-picker" role="group" aria-label="Velg tidspunkt for ladeprisen">
+          <button class="active" type="button" data-price-time="now" aria-pressed="true">Pris nå</button>
+          <button type="button" data-price-time="late" aria-pressed="false">Etter kl. 23</button>
+        </div>
+        <small id="city-price-time-status">Prisene følger klokkeslettet i Norge og oppdateres automatisk.</small>
       </div>
-      ${model.priceDifference > 0 ? `<p class="city-insight">Dyreste kjente drop-in-pris innenfor ${model.radiusKm} km er <strong>${number.format(model.priceDifference)} % høyere</strong> enn den billigste.</p>` : ''}
+      <div class="city-lists">
+        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div><ol id="city-tesla-list">${stationList(model.teslaTop, 'tesla')}</ol></article>
+        <article><div class="city-list-title"><span class="other">↗</span><div><h3>For andre biler</h3><p>Inkluderer Tesla-stasjoner med egen pris for andre biler</p></div></div><ol id="city-other-list">${stationList(model.otherTop, 'other')}</ol></article>
+      </div>
+      <p class="city-insight" id="city-price-insight"${model.priceDifference > 0 ? '' : ' hidden'}>Dyreste kjente drop-in-pris innenfor ${model.radiusKm} km er <strong>${number.format(model.priceDifference ?? 0)} % høyere</strong> enn den billigste.</p>
     </section>
     <section class="city-details">
       <div><p class="city-eyebrow">Lokalt ladenettverk</p><h2>Hurtigladere i ${escapeHtml(model.name)}</h2><p>Oversikten omfatter ladere på minst 50 kW. Pris kan endres før neste daglige kontroll, så kontroller alltid beløpet hos operatøren før lading.</p><div class="operator-list">${model.operators.map(operator => `<span>${escapeHtml(operator.name)} <b>${operator.count}</b></span>`).join('')}</div></div>
       <aside><h3>Ladepriser i nærheten</h3><ul>${model.nearbyCities.map(city => `<li><a href="/ladepriser/${city.slug}/"><span>${escapeHtml(city.name)}</span><small>${distanceLabel(city.distance)} unna</small></a></li>`).join('')}</ul></aside>
     </section>
   </main>`
-  return pageShell({ title, description, canonical, body, siteUrl })
+  return pageShell({ title, description, canonical, body, siteUrl, script: '<script src="/city-page.js" defer></script>' })
 }
 
 export function renderCityIndex (models, siteUrl) {

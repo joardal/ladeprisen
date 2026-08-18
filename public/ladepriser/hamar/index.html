@@ -28,13 +28,21 @@
       <div class="city-facts">
         <div><strong>9</strong><span>hurtigladestasjoner</span></div>
         <div><strong>10 km</strong><span>fra sentrum</span></div>
-        <div><strong>5,50–6,49 kr/kWh</strong><span>kjent drop-in-pris</span></div>
+        <div><strong id="city-price-range">5,50–6,49 kr/kWh</strong><span>kjent drop-in-pris</span></div>
       </div>
     </section>
     <section class="city-comparison" aria-labelledby="comparison-title">
-      <div class="city-section-head"><div><p class="city-eyebrow">Billigst akkurat nå</p><h2 id="comparison-title">Ladepriser i Hamar</h2></div><a class="city-map-link" href="/?sted=Hamar">Åpne interaktivt kart →</a></div>
+      <div class="city-section-head"><div><p class="city-eyebrow" id="city-price-eyebrow">Billigst akkurat nå</p><h2 id="comparison-title">Ladepriser i Hamar</h2></div><a class="city-map-link" id="city-map-link" href="/?sted=Hamar">Åpne interaktivt kart →</a></div>
+      <div class="city-price-time-row">
+        <span>Ladetid</span>
+        <div class="city-price-time-picker" role="group" aria-label="Velg tidspunkt for ladeprisen">
+          <button class="active" type="button" data-price-time="now" aria-pressed="true">Pris nå</button>
+          <button type="button" data-price-time="late" aria-pressed="false">Etter kl. 23</button>
+        </div>
+        <small id="city-price-time-status">Prisene følger klokkeslettet i Norge og oppdateres automatisk.</small>
+      </div>
       <div class="city-lists">
-        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div><ol><li class="city-station">
+        <article><div class="city-list-title"><span>T</span><div><h3>For Tesla-eiere</h3><p>Tesla-pris på Tesla-ladere, vanlig drop-in-pris på andre ladere</p></div></div><ol id="city-tesla-list"><li class="city-station">
     <span class="city-rank">1</span>
     <div class="city-station-copy">
       <span class="city-operator">Uno-X</span>
@@ -65,7 +73,7 @@
     <div class="city-price"><strong>6,29</strong><span>kr/kWh</span></div>
     <a href="https://www.google.com/maps/dir/?api=1&destination=60.79967,11.04547" target="_blank" rel="noreferrer" aria-label="Naviger til Maxi Storsenter">Naviger ↗</a>
   </li></ol></article>
-        <article><div class="city-list-title"><span class="other">↗</span><div><h3>For andre biler</h3><p>Inkluderer Tesla-stasjoner med egen pris for andre biler</p></div></div><ol><li class="city-station">
+        <article><div class="city-list-title"><span class="other">↗</span><div><h3>For andre biler</h3><p>Inkluderer Tesla-stasjoner med egen pris for andre biler</p></div></div><ol id="city-other-list"><li class="city-station">
     <span class="city-rank">1</span>
     <div class="city-station-copy">
       <span class="city-operator">Uno-X</span>
@@ -97,7 +105,7 @@
     <a href="https://www.google.com/maps/dir/?api=1&destination=60.79967,11.04547" target="_blank" rel="noreferrer" aria-label="Naviger til Maxi Storsenter">Naviger ↗</a>
   </li></ol></article>
       </div>
-      <p class="city-insight">Dyreste kjente drop-in-pris innenfor 10 km er <strong>18 % høyere</strong> enn den billigste.</p>
+      <p class="city-insight" id="city-price-insight">Dyreste kjente drop-in-pris innenfor 10 km er <strong>18 % høyere</strong> enn den billigste.</p>
     </section>
     <section class="city-details">
       <div><p class="city-eyebrow">Lokalt ladenettverk</p><h2>Hurtigladere i Hamar</h2><p>Oversikten omfatter ladere på minst 50 kW. Pris kan endres før neste daglige kontroll, så kontroller alltid beløpet hos operatøren før lading.</p><div class="operator-list"><span>Recharge <b>3</b></span><span>Circle K <b>2</b></span><span>Mer <b>2</b></span><span>Eviny <b>1</b></span><span>Uno-X <b>1</b></span></div></div>
@@ -105,5 +113,7 @@
     </section>
   </main>
     <footer class="city-footer"><span>© 2026 Ladeprisen</span><span>Stasjonsdata: <a href="https://info.nobil.no/">NOBIL / Enova</a> · <a href="https://ladeprisen.no">Finn ladere i hele Norge</a></span></footer>
+    <script src="/city-page.js" defer></script>
+
   </body>
 </html>

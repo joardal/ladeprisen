@@ -27,6 +27,7 @@ const titles = new Set()
 const descriptions = new Set()
 const canonicals = new Set()
 const brokenLinks = []
+const missingCityData = []
 
 for (const file of cityFiles) {
   const html = await readFile(file, 'utf8')
@@ -42,6 +43,13 @@ for (const file of cityFiles) {
     if (!href.startsWith('/') || href.startsWith('//')) continue
     if (!existsSync(internalTarget(href))) brokenLinks.push(`${relative(root, file)} -> ${href}`)
   }
+  if (relative(root, file) !== join('ladepriser', 'index.html')) {
+    const dataPath = join(file, '..', 'data.json')
+    if (!existsSync(dataPath)) missingCityData.push(relative(root, dataPath))
+    if (!html.includes('data-price-time="late"') || !html.includes('src="/city-page.js"')) {
+      throw new Error(`${relative(root, file)} mangler dynamisk tidsvalg`)
+    }
+  }
 }
 
 const sitemap = await readFile(join(root, 'sitemap.xml'), 'utf8')
@@ -55,5 +63,6 @@ if (canonicals.size !== cityFiles.length) throw new Error('Bysidene har dupliser
 if (sitemapUrls.length !== 32) throw new Error(`Forventet 32 adresser i sitemap, fant ${sitemapUrls.length}`)
 if (!/<link rel="canonical"/.test(rootHtml)) throw new Error('Forsiden mangler canonical i produksjonsbygget')
 if (brokenLinks.length) throw new Error(`Fant brutte internlenker:\n${brokenLinks.join('\n')}`)
+if (missingCityData.length) throw new Error(`Bysider mangler klientdata:\n${missingCityData.join('\n')}`)
 
 console.log(`Gyldig nettsted: 30 bysider, unike metadata, ${sitemapUrls.length} sitemap-adresser og ingen brutte internlenker.`)

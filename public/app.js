@@ -15,6 +15,8 @@ const elements = {
   teslaNearby: document.querySelector('#tesla-nearby-list'),
   otherNearby: document.querySelector('#other-nearby-list'),
   priceGap: document.querySelector('#price-gap'),
+  priceTimeButtons: [...document.querySelectorAll('[data-price-time]')],
+  priceTimeStatus: document.querySelector('#price-time-status'),
   search: document.querySelector('#search'),
   power: document.querySelector('#power-filter'),
   sort: document.querySelector('#sort-order'),
@@ -49,6 +51,7 @@ let selectedStationId = null
 let userLocation = null
 let userMarker = null
 let renderFrame = null
+let priceTimeMode = new URLSearchParams(window.location.search).get('tid') === '23' ? 'late' : 'now'
 
 function escapeHtml (value) {
   return String(value ?? '').replace(/[&<>'"]/g, character => ({
@@ -68,13 +71,24 @@ function maxPower (station) {
   return Math.max(0, ...(station.connectors ?? []).map(connector => connector.maxPowerKw ?? 0))
 }
 
-function activePeriod (period, now = new Date()) {
+function osloMinutes (now = new Date()) {
+  const parts = new Intl.DateTimeFormat('nb-NO', {
+    timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  }).formatToParts(now)
+  const value = type => Number(parts.find(part => part.type === type)?.value)
+  return value('hour') * 60 + value('minute')
+}
+
+function selectedPriceMinutes () {
+  return priceTimeMode === 'late' ? 23 * 60 + 30 : osloMinutes()
+}
+
+function activePeriod (period, current = selectedPriceMinutes()) {
   if (!period?.startTime || !period?.endTime) return true
   const minutes = value => {
     const [hours, mins] = value.split(':').map(Number)
     return hours * 60 + mins
   }
-  const current = now.getHours() * 60 + now.getMinutes()
   const start = minutes(period.startTime)
   const end = minutes(period.endTime)
   if (start === end) return true
@@ -99,9 +113,48 @@ function currentDropInPrice (station) {
   return currentPriceFor(station, ['drop-in'])
 }
 
+function updatePriceTimeUi () {
+  for (const button of elements.priceTimeButtons) {
+    const active = button.dataset.priceTime === priceTimeMode
+    button.classList.toggle('active', active)
+    button.setAttribute('aria-pressed', String(active))
+  }
+  elements.priceTimeStatus.textContent = priceTimeMode === 'late'
+    ? 'Viser priser som gjelder kl. 23.30.'
+    : 'Prisene følger klokkeslettet i Norge og oppdateres automatisk.'
+}
+
+function refreshTimedPrices ({ force = false } = {}) {
+  let changed = false
+  for (const station of stations) {
+    const nextPrice = currentDropInPrice(station)
+    const nextTeslaPrice = currentPriceFor(station, ['tesla-vehicle'])
+    if (station._price?.amount !== nextPrice?.amount ||
+      station._price?.details?.priceBookId !== nextPrice?.details?.priceBookId ||
+      station._teslaPrice?.amount !== nextTeslaPrice?.amount ||
+      station._teslaPrice?.details?.priceBookId !== nextTeslaPrice?.details?.priceBookId) changed = true
+    station._price = nextPrice
+    station._teslaPrice = nextTeslaPrice
+    station._displayPrice = station._price
+  }
+  if (!force && !changed) return
+  renderNearby()
+  render()
+}
+
+function setPriceTimeMode (mode) {
+  priceTimeMode = mode === 'late' ? 'late' : 'now'
+  updatePriceTimeUi()
+  const url = new URL(window.location.href)
+  if (priceTimeMode === 'late') url.searchParams.set('tid', '23')
+  else url.searchParams.delete('tid')
+  history.replaceState(null, '', url)
+  refreshTimedPrices({ force: true })
+}
+
 function driverPrice (station, driver) {
   if (driver === 'tesla' && station.operator?.id === 'tesla') {
-    return currentPriceFor(station, ['tesla-vehicle']) ?? station._price
+    return station._teslaPrice ?? station._price
   }
   return station._price
 }
@@ -374,6 +427,7 @@ function findPlace (query) {
 
 async function initialize () {
   try {
+    updatePriceTimeUi()
     const [stationResponse, priceResponse] = await Promise.all([
       fetch('/data/stations.json', { cache: 'no-store' }),
       fetch('/data/operator-prices.json', { cache: 'no-store' })
@@ -384,10 +438,12 @@ async function initialize () {
     stations = (dataset.stations ?? []).map(station => {
       for (const price of station.prices ?? []) price.sourceStatus ??= sourceStatuses.get(price.provider) ?? null
       const stationPrice = currentDropInPrice(station)
+      const teslaVehiclePrice = currentPriceFor(station, ['tesla-vehicle'])
       return {
         ...station,
         _maxPower: maxPower(station),
         _price: stationPrice,
+        _teslaPrice: teslaVehiclePrice,
         _displayPrice: stationPrice,
         _distance: null,
         _search: normalized([station.name, station.operator?.name, station.address?.city, station.address?.municipality, station.address?.county].join(' '))
@@ -433,6 +489,9 @@ elements.nearbyRadius.addEventListener('change', () => {
   renderNearby()
 })
 elements.nearbyPower.addEventListener('change', renderNearby)
+for (const button of elements.priceTimeButtons) {
+  button.addEventListener('click', () => setPriceTimeMode(button.dataset.priceTime))
+}
 elements.placeForm.addEventListener('submit', event => {
   event.preventDefault()
   const place = findPlace(elements.placeSearch.value)
@@ -466,3 +525,7 @@ document.querySelector('.quick-compare').addEventListener('click', event => {
 })
 
 initialize()
+
+setInterval(() => {
+  if (priceTimeMode === 'now' && stations.length) refreshTimedPrices()
+}, 60_000)

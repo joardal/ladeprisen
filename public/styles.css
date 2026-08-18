@@ -62,6 +62,13 @@ h1 em { color: var(--green); font-weight: inherit; }
 .nearby-controls { display: flex; align-items: center; gap: 14px; }
 .nearby-controls label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .76rem; font-weight: 700; }
 .nearby-controls select { height: 39px; padding: 0 28px 0 11px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: white; font-size: .78rem; }
+.price-time-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.price-time-row > span { color: var(--muted); font-size: .72rem; font-weight: 800; }
+.price-time-row > small { color: var(--muted); font-size: .68rem; }
+.price-time-picker { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--soft); }
+.price-time-picker button { min-height: 32px; padding: 0 12px; border: 0; border-radius: 999px; color: var(--muted); background: transparent; font-size: .72rem; font-weight: 800; }
+.price-time-picker button.active { color: white; background: var(--dark-green); box-shadow: 0 3px 10px rgba(16,37,29,.16); }
+.price-time-picker button:focus-visible { outline: 3px solid rgba(8,127,91,.25); outline-offset: 2px; }
 .area-status { margin: 13px 0 24px; color: var(--muted); font-size: .84rem; }
 .price-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .price-list-panel { padding: 20px; border: 1px solid var(--line); border-radius: 20px; background: #f8f7f0; }
@@ -198,6 +205,8 @@ footer a { text-underline-offset: 2px; }
   .nearby-controls { width: 100%; align-items: stretch; }
   .nearby-controls label { min-width: 0; flex: 1; align-items: flex-start; flex-direction: column; }
   .nearby-controls select { width: 100%; }
+  .price-time-row { align-items: flex-start; flex-wrap: wrap; }
+  .price-time-row > small { width: 100%; }
   .price-lists { grid-template-columns: 1fr; }
   .price-list-panel { padding: 15px; }
   .nearby-list button { padding-left: 9px; }

@@ -44,5 +44,19 @@ test('byside-malen har lokal metadata, canonical og ingen kjent-pris-dekning', (
   assert.match(html, /elbillader i Testby/)
   assert.match(html, /rel="canonical" href="https:\/\/example\.no\/ladepriser\/testby\/"/)
   assert.match(html, /10 km.*fra sentrum/s)
+  assert.match(html, /data-price-time="now"/)
+  assert.match(html, /Etter kl\. 23/)
+  assert.match(html, /src="\/city-page\.js"/)
   assert.doesNotMatch(html, /med offentlig pris/)
+})
+
+test('bymodellen beholder lokale stasjoner for prisvalg i nettleseren', () => {
+  const city = { slug: 'testby', name: 'Testby', latitude: 59.91, longitude: 10.75 }
+  const model = buildCityModel({
+    city, cities: [city], radiusKm: 10, generatedAt: '2026-08-15T10:00:00.000Z',
+    stations: [station({ id: 'a', longitude: 10.76, prices: [price('drop-in', 5)] })]
+  })
+  assert.equal(model.stations.length, 1)
+  assert.equal(model.stations[0].id, 'a')
+  assert.ok(Number.isFinite(model.stations[0].distance))
 })

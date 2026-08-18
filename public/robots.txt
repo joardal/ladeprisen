@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://ladepris.pages.dev/sitemap.xml
+Sitemap: https://ladeprisen.no/sitemap.xml

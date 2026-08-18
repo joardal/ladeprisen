@@ -12,7 +12,7 @@ const outputDirectory = resolve(root, 'dist')
 const dataset = validateDataset(await readJson(resolve(publicDirectory, 'data/stations.json')))
 const operatorPrices = validateOperatorPrices(await readJson(resolve(publicDirectory, 'data/operator-prices.json')))
 const cityConfig = await readJson(resolve(root, 'config/cities.json'))
-const siteUrl = (process.env.SITE_URL || 'https://ladepris.pages.dev').replace(/\/$/, '')
+const siteUrl = (process.env.SITE_URL || 'https://ladeprisen.no').replace(/\/$/, '')
 
 if (!Number.isFinite(cityConfig.radiusKm) || cityConfig.radiusKm <= 0) throw new Error('config/cities.json mangler gyldig radiusKm')
 if (!Array.isArray(cityConfig.cities) || cityConfig.cities.length === 0) throw new Error('config/cities.json mangler byer')

@@ -1,7 +1,7 @@
 const DEFAULT_HEADERS = {
   Accept: 'text/html,application/xhtml+xml',
   'Accept-Language': 'nb-NO,nb;q=0.9,en;q=0.7',
-  'User-Agent': 'Ladeprisen/0.1 (+https://ladepris.pages.dev)'
+  'User-Agent': 'Ladeprisen/0.1 (+https://ladeprisen.no)'
 }
 
 function decodeHtml (value) {

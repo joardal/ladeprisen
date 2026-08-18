@@ -9,7 +9,7 @@ Ladeprisen skal gjøre det enkelt å finne den rimeligste hurtigladingen i nærh
 - Operatørpriser: ti åpne, offisielle kilder og to tydelig merkede kontrollkilder oppdateres automatisk.
 - Kart, søk, effektfilter, GPS-sortering og navigasjonslenker er klare lokalt.
 - Tretti statiske bysider med 10 km radius, lokale topplister, canonical-metadata, internlenker og automatisk sitemap bygges fra én felles mal.
-- Sist publiserte versjon ligger på https://ladepris.pages.dev/.
+- Produksjonssiden ligger på https://ladeprisen.no/.
 
 ## Lokal oppstart
 
@@ -25,7 +25,7 @@ Cloudflare Pages kan bruke byggekommandoen `npm run build` og publisere `dist/`.
 
 Produksjonsbygget ligger i `dist/` og inkluderer genererte sider under `/ladepriser/`. Byene og koordinatene vedlikeholdes samlet i `config/cities.json`; HTML-malen ligger i `scripts/templates/city-page.mjs`. Endringer i malen gjelder dermed alle bysidene ved neste bygg.
 
-Canonical-adresser og sitemap bruker `SITE_URL`. Standardverdien er dagens Pages-adresse. Når eget domene er klart, settes variabelen én gang i Cloudflare Pages:
+Canonical-adresser og sitemap bruker `SITE_URL`. Standardverdien er produksjonsdomenet:
 
 ```text
 SITE_URL=https://ladeprisen.no

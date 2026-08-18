@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { fetchTeslaSite, normalizeTeslaSite, refreshTeslaTokens, TESLA_TOKEN_ENDPOINT } from '../scripts/providers/tesla.mjs'
+import { fetchTeslaSite, normalizeTeslaSite, refreshTeslaTokens, removeFallbackNonTeslaPrices, TESLA_TOKEN_ENDPOINT } from '../scripts/providers/tesla.mjs'
 
 const rawSite = {
   siteStatic: {
@@ -24,6 +24,28 @@ test('Tesla-priser normaliseres for drop-in og medlem', () => {
 test('Tesla-bilpris normaliseres separat', () => {
   const result = normalizeTeslaSite(rawSite, '2026-01-01T00:00:00.000Z', { vehicleMakeType: 'TESLA' })
   assert.deepEqual(result.prices.map(price => price.customerType), ['tesla-vehicle'])
+})
+
+test('Tesla-eksklusiv stasjon mister feilaktig NON_TESLA-reservepris', () => {
+  const prices = [
+    { customerType: 'drop-in', priceBookId: 'same' },
+    { customerType: 'member', priceBookId: 'same' },
+    { customerType: 'tesla-vehicle', priceBookId: 'same' }
+  ]
+  const result = removeFallbackNonTeslaPrices({ prices })
+  assert.equal(result.nonTeslaPricingAvailable, false)
+  assert.deepEqual(result.prices.map(price => price.customerType), ['tesla-vehicle'])
+})
+
+test('åpen Tesla-stasjon beholder egen drop-in-pris for andre biler', () => {
+  const prices = [
+    { customerType: 'drop-in', priceBookId: 'public' },
+    { customerType: 'member', priceBookId: 'tesla' },
+    { customerType: 'tesla-vehicle', priceBookId: 'tesla' }
+  ]
+  const result = removeFallbackNonTeslaPrices({ prices })
+  assert.equal(result.nonTeslaPricingAvailable, true)
+  assert.deepEqual(result.prices.map(price => price.customerType), ['drop-in', 'member', 'tesla-vehicle'])
 })
 
 test('tokenfornyelse sender form-data og beholder rotert token', async () => {

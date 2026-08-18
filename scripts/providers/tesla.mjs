@@ -81,12 +81,13 @@ function normalizePrice (rate, customerType) {
 
 export function normalizeTeslaSite (site, fetchedAt = new Date().toISOString(), { vehicleMakeType = 'NON_TESLA' } = {}) {
   const details = site?.siteStatic
+  const pricing = site?.pricing
   if (!details?.locationGUID || !details?.centroid) throw new Error('Tesla-svaret mangler stasjonsdetaljer')
   const prices = vehicleMakeType === 'TESLA'
-    ? [normalizePrice(site.pricing?.userRates, 'tesla-vehicle')].filter(Boolean)
+    ? [normalizePrice(pricing?.userRates, 'tesla-vehicle')].filter(Boolean)
     : [
-        normalizePrice(site.pricing?.userRates, 'drop-in'),
-        normalizePrice(site.pricing?.memberRates, 'member')
+        normalizePrice(pricing?.userRates, 'drop-in'),
+        normalizePrice(pricing?.memberRates, 'member')
       ].filter(Boolean)
   if (prices.length === 0) throw new Error('Tesla-svaret mangler priser')
   return {
@@ -98,8 +99,34 @@ export function normalizeTeslaSite (site, fetchedAt = new Date().toISOString(), 
     totalStalls: details.publicStallCount ?? null,
     siteType: details.siteType ?? null,
     accessType: details.accessType ?? null,
+    pricingCapabilities: {
+      hasMembershipPricing: pricing?.hasMembershipPricing === true,
+      hasMSPPricing: pricing?.hasMSPPricing === true,
+      canDisplayCombinedComparison: pricing?.canDisplayCombinedComparison === true
+    },
     prices,
     fetchedAt
+  }
+}
+
+export function removeFallbackNonTeslaPrices (site) {
+  const prices = site?.prices ?? []
+  const dropIn = prices.find(price => price.customerType === 'drop-in')
+  const teslaVehicle = prices.find(price => price.customerType === 'tesla-vehicle')
+  if (!teslaVehicle) return site
+
+  // Tesla returns the Tesla pricebook as a fallback for NON_TESLA at some
+  // Tesla-only sites. A real public non-Tesla offer has its own pricebook.
+  const nonTeslaPricingAvailable = dropIn?.priceBookId != null &&
+    teslaVehicle.priceBookId != null &&
+    String(dropIn.priceBookId) !== String(teslaVehicle.priceBookId)
+
+  return {
+    ...site,
+    nonTeslaPricingAvailable,
+    prices: nonTeslaPricingAvailable
+      ? prices
+      : prices.filter(price => price.customerType === 'tesla-vehicle')
   }
 }
 

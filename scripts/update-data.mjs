@@ -3,7 +3,7 @@ import { readJson, writeJsonAtomic } from './lib/io.mjs'
 import { validateDataset } from './lib/validate.mjs'
 import { applyOperatorPrices } from './lib/operator-mapping.mjs'
 import { fetchNobilDump } from './providers/nobil.mjs'
-import { fetchTeslaSite, refreshTeslaTokens } from './providers/tesla.mjs'
+import { fetchTeslaSite, refreshTeslaTokens, removeFallbackNonTeslaPrices } from './providers/tesla.mjs'
 
 const root = process.cwd()
 const paths = {
@@ -143,7 +143,10 @@ async function updateTesla (nobil) {
 
   const config = await readJson(paths.teslaConfig)
   const targets = teslaTargets(nobil, config.sites)
-  const previous = new Map(cached.sites.map(site => [site.locationGuid, site]))
+  const previous = new Map(cached.sites.map(site => {
+    const sanitized = removeFallbackNonTeslaPrices(site)
+    return [sanitized.locationGuid, sanitized]
+  }))
   let successes = 0
   let failures = 0
   const failureSamples = []
@@ -154,10 +157,10 @@ async function updateTesla (nobil) {
         fetchTeslaSite({ accessToken, locationGuid: configuredSite.locationGuid, vehicleMakeType: 'NON_TESLA' }),
         fetchTeslaSite({ accessToken, locationGuid: configuredSite.locationGuid, vehicleMakeType: 'TESLA' })
       ])
-      const site = {
+      const site = removeFallbackNonTeslaPrices({
         ...nonTeslaSite,
         prices: [...nonTeslaSite.prices, ...teslaVehicleSite.prices]
-      }
+      })
       previous.set(site.locationGuid, site)
       successes += 1
     } catch (error) {

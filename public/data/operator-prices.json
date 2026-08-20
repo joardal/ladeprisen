@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-19T04:00:19.320Z",
+  "generatedAt": "2026-08-20T04:00:27.140Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-08-19T04:00:16.591Z",
+      "fetchedAt": "2026-08-20T04:00:17.077Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,7 +44,7 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-08-19T04:00:19.319Z",
+      "fetchedAt": "2026-08-20T04:00:27.140Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -69,7 +69,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-08-19T04:00:16.714Z",
+      "fetchedAt": "2026-08-20T04:00:17.158Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-08-19T04:00:16.579Z",
+      "fetchedAt": "2026-08-20T04:00:17.094Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -127,7 +127,7 @@
     {
       "id": "ishavsveien",
       "name": "Ishavsveien",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
       "fetchedAt": "2026-08-19T04:00:19.140Z",
       "rates": [
@@ -159,14 +159,15 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-08-20T04:00:26.978Z"
     },
     {
       "id": "kople",
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-08-19T04:00:16.785Z",
+      "fetchedAt": "2026-08-20T04:00:17.519Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -243,7 +244,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-08-19T04:00:18.000Z",
+      "fetchedAt": "2026-08-20T04:00:18.320Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -266,7 +267,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-08-19T04:00:16.606Z",
+      "fetchedAt": "2026-08-20T04:00:17.227Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -289,7 +290,7 @@
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-08-19T04:00:16.921Z",
+      "fetchedAt": "2026-08-20T04:00:17.321Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -312,7 +313,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-08-19T04:00:17.715Z",
+      "fetchedAt": "2026-08-20T04:00:18.171Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -349,7 +350,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-08-19T04:00:17.017Z",
+      "fetchedAt": "2026-08-20T04:00:17.337Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -395,7 +396,7 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-08-19T04:00:19.320Z",
+      "fetchedAt": "2026-08-20T04:00:27.140Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [

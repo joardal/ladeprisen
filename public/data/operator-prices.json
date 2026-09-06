@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-05T04:00:30.457Z",
+  "generatedAt": "2026-09-06T04:00:47.126Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
       "fetchedAt": "2026-09-05T04:00:19.688Z",
       "rates": [
@@ -37,14 +37,15 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-09-06T04:00:46.924Z"
     },
     {
       "id": "eon-clever",
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-05T04:00:30.456Z",
+      "fetchedAt": "2026-09-06T04:00:47.126Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -69,7 +70,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-09-05T04:00:19.772Z",
+      "fetchedAt": "2026-09-06T04:00:17.470Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +93,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-09-05T04:00:19.798Z",
+      "fetchedAt": "2026-09-06T04:00:19.060Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +130,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-09-05T04:00:30.300Z",
+      "fetchedAt": "2026-09-06T04:00:17.924Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -166,7 +167,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-09-05T04:00:20.176Z",
+      "fetchedAt": "2026-09-06T04:00:17.454Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -243,7 +244,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-09-05T04:00:20.875Z",
+      "fetchedAt": "2026-09-06T04:00:18.341Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -266,7 +267,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-09-05T04:00:20.494Z",
+      "fetchedAt": "2026-09-06T04:00:17.478Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -289,7 +290,7 @@
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-09-05T04:00:19.981Z",
+      "fetchedAt": "2026-09-06T04:00:18.095Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -312,7 +313,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-09-05T04:00:20.544Z",
+      "fetchedAt": "2026-09-06T04:00:18.293Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -349,7 +350,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-09-05T04:00:20.001Z",
+      "fetchedAt": "2026-09-06T04:00:17.606Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -395,7 +396,7 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-05T04:00:30.456Z",
+      "fetchedAt": "2026-09-06T04:00:47.126Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [

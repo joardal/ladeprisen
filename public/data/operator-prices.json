@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T04:00:09.522Z",
+  "generatedAt": "2026-09-09T04:00:07.329Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-09-08T04:00:07.984Z",
+      "fetchedAt": "2026-09-09T04:00:06.322Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,7 +44,7 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-08T04:00:09.521Z",
+      "fetchedAt": "2026-09-09T04:00:07.328Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -69,7 +69,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-09-08T04:00:08.086Z",
+      "fetchedAt": "2026-09-09T04:00:06.399Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-09-08T04:00:08.103Z",
+      "fetchedAt": "2026-09-09T04:00:06.342Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-09-08T04:00:08.477Z",
+      "fetchedAt": "2026-09-09T04:00:06.876Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -166,7 +166,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-09-08T04:00:08.419Z",
+      "fetchedAt": "2026-09-09T04:00:06.734Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -243,7 +243,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-09-08T04:00:09.387Z",
+      "fetchedAt": "2026-09-09T04:00:06.994Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -266,7 +266,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-09-08T04:00:08.072Z",
+      "fetchedAt": "2026-09-09T04:00:06.365Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -289,7 +289,7 @@
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-09-08T04:00:08.252Z",
+      "fetchedAt": "2026-09-09T04:00:06.626Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -312,7 +312,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-09-08T04:00:08.842Z",
+      "fetchedAt": "2026-09-09T04:00:07.202Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -349,12 +349,12 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-09-08T04:00:08.283Z",
+      "fetchedAt": "2026-09-09T04:00:06.577Z",
       "rates": [
         {
           "customerType": "drop-in",
           "label": "Drop-in",
-          "amount": 6.69,
+          "amount": 6.49,
           "currency": "NOK",
           "unit": "kWh",
           "power": {
@@ -395,7 +395,7 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-08T04:00:09.521Z",
+      "fetchedAt": "2026-09-09T04:00:07.328Z",
       "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [

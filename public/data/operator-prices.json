@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T04:00:12.741Z",
+  "generatedAt": "2026-09-18T04:00:09.145Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-09-17T04:00:11.445Z",
+      "fetchedAt": "2026-09-18T04:00:07.747Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,8 +44,8 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-17T04:00:12.741Z",
-      "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
+      "fetchedAt": "2026-09-18T04:00:09.145Z",
+      "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
         {
@@ -69,7 +69,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-09-17T04:00:11.459Z",
+      "fetchedAt": "2026-09-18T04:00:07.809Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-09-17T04:00:11.481Z",
+      "fetchedAt": "2026-09-18T04:00:07.825Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-09-17T04:00:11.435Z",
+      "fetchedAt": "2026-09-18T04:00:08.556Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -166,7 +166,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-09-17T04:00:11.862Z",
+      "fetchedAt": "2026-09-18T04:00:08.252Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -243,7 +243,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-09-17T04:00:12.496Z",
+      "fetchedAt": "2026-09-18T04:00:08.922Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -266,7 +266,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-09-17T04:00:11.466Z",
+      "fetchedAt": "2026-09-18T04:00:07.785Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -289,7 +289,7 @@
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-09-17T04:00:11.654Z",
+      "fetchedAt": "2026-09-18T04:00:08.046Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -312,7 +312,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-09-17T04:00:12.271Z",
+      "fetchedAt": "2026-09-18T04:00:08.692Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -349,7 +349,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-09-17T04:00:11.827Z",
+      "fetchedAt": "2026-09-18T04:00:08.017Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -395,8 +395,8 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-09-17T04:00:12.741Z",
-      "sourceUpdatedAt": "2026-08-05T08:06:51.000Z",
+      "fetchedAt": "2026-09-18T04:00:09.145Z",
+      "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
         {

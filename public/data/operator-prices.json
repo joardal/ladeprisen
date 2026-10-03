@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-02T04:00:18.706Z",
+  "generatedAt": "2026-10-03T04:00:16.668Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
       "fetchedAt": "2026-10-02T04:00:16.885Z",
       "rates": [
@@ -37,12 +37,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.654Z"
     },
     {
       "id": "eon-clever",
       "name": "E.ON Drive & Clever",
-      "status": "fallback",
+      "status": "stale",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
       "fetchedAt": "2026-10-02T04:00:18.706Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
@@ -62,12 +63,13 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.668Z"
     },
     {
       "id": "eviny",
       "name": "Eviny",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://hurtiglading.eviny.no/",
       "fetchedAt": "2026-10-02T04:00:16.961Z",
       "rates": [
@@ -85,12 +87,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.657Z"
     },
     {
       "id": "ionity",
       "name": "IONITY",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
       "fetchedAt": "2026-10-02T04:00:18.522Z",
       "rates": [
@@ -122,12 +125,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.658Z"
     },
     {
       "id": "ishavsveien",
       "name": "Ishavsveien",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
       "fetchedAt": "2026-10-02T04:00:17.662Z",
       "rates": [
@@ -159,7 +163,8 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.658Z"
     },
     {
       "id": "kople",
@@ -237,12 +242,12 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-02T04:00:17.250Z"
+      "checkedAt": "2026-10-03T04:00:16.659Z"
     },
     {
       "id": "lad-opp",
       "name": "Lad Opp",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://ladopp.no/betaling/",
       "fetchedAt": "2026-10-02T04:00:16.897Z",
       "rates": [
@@ -260,12 +265,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.660Z"
     },
     {
       "id": "mer",
       "name": "Mer",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
       "fetchedAt": "2026-10-02T04:00:16.923Z",
       "rates": [
@@ -283,12 +289,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.660Z"
     },
     {
       "id": "porsche",
       "name": "Porsche",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
       "fetchedAt": "2026-10-02T04:00:17.164Z",
       "rates": [
@@ -306,12 +313,13 @@
           "monthlyFee": null,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.661Z"
     },
     {
       "id": "ragde-charge",
       "name": "Ragde Charge",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://ragde.no/charge/",
       "fetchedAt": "2026-10-02T04:00:17.994Z",
       "rates": [
@@ -343,12 +351,13 @@
           "monthlyFee": null,
           "region": "north-central"
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.662Z"
     },
     {
       "id": "recharge",
       "name": "Recharge",
-      "status": "current",
+      "status": "stale",
       "sourceUrl": "https://rechargeinfra.com/no/",
       "fetchedAt": "2026-10-02T04:00:17.214Z",
       "rates": [
@@ -380,7 +389,8 @@
           "monthlyFee": 69,
           "region": null
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.663Z"
     },
     {
       "id": "tesla",
@@ -394,7 +404,7 @@
     {
       "id": "uno-x",
       "name": "Uno-X",
-      "status": "fallback",
+      "status": "stale",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
       "fetchedAt": "2026-10-02T04:00:18.706Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
@@ -414,7 +424,8 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ]
+      ],
+      "checkedAt": "2026-10-03T04:00:16.668Z"
     }
   ]
 }

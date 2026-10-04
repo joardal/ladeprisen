@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-03T04:00:16.668Z",
+  "generatedAt": "2026-10-04T04:00:24.134Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-10-02T04:00:16.885Z",
+      "fetchedAt": "2026-10-04T04:00:12.276Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -37,15 +37,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.654Z"
+      ]
     },
     {
       "id": "eon-clever",
       "name": "E.ON Drive & Clever",
-      "status": "stale",
+      "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-02T04:00:18.706Z",
+      "fetchedAt": "2026-10-04T04:00:24.133Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -63,15 +62,14 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.668Z"
+      ]
     },
     {
       "id": "eviny",
       "name": "Eviny",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-10-02T04:00:16.961Z",
+      "fetchedAt": "2026-10-04T04:00:12.375Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -87,15 +85,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.657Z"
+      ]
     },
     {
       "id": "ionity",
       "name": "IONITY",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-10-02T04:00:18.522Z",
+      "fetchedAt": "2026-10-04T04:00:12.316Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -125,15 +122,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.658Z"
+      ]
     },
     {
       "id": "ishavsveien",
       "name": "Ishavsveien",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-10-02T04:00:17.662Z",
+      "fetchedAt": "2026-10-04T04:00:23.747Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -163,8 +159,7 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.658Z"
+      ]
     },
     {
       "id": "kople",
@@ -242,14 +237,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-03T04:00:16.659Z"
+      "checkedAt": "2026-10-04T04:00:12.861Z"
     },
     {
       "id": "lad-opp",
       "name": "Lad Opp",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-10-02T04:00:16.897Z",
+      "fetchedAt": "2026-10-04T04:00:13.435Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -265,15 +260,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.660Z"
+      ]
     },
     {
       "id": "mer",
       "name": "Mer",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-10-02T04:00:16.923Z",
+      "fetchedAt": "2026-10-04T04:00:12.304Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -289,15 +283,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.660Z"
+      ]
     },
     {
       "id": "porsche",
       "name": "Porsche",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-10-02T04:00:17.164Z",
+      "fetchedAt": "2026-10-04T04:00:12.558Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -313,15 +306,14 @@
           "monthlyFee": null,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.661Z"
+      ]
     },
     {
       "id": "ragde-charge",
       "name": "Ragde Charge",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-10-02T04:00:17.994Z",
+      "fetchedAt": "2026-10-04T04:00:13.396Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -351,15 +343,14 @@
           "monthlyFee": null,
           "region": "north-central"
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.662Z"
+      ]
     },
     {
       "id": "recharge",
       "name": "Recharge",
-      "status": "stale",
+      "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-10-02T04:00:17.214Z",
+      "fetchedAt": "2026-10-04T04:00:12.534Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -389,8 +380,7 @@
           "monthlyFee": 69,
           "region": null
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.663Z"
+      ]
     },
     {
       "id": "tesla",
@@ -404,9 +394,9 @@
     {
       "id": "uno-x",
       "name": "Uno-X",
-      "status": "stale",
+      "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-02T04:00:18.706Z",
+      "fetchedAt": "2026-10-04T04:00:24.133Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -424,8 +414,7 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ],
-      "checkedAt": "2026-10-03T04:00:16.668Z"
+      ]
     }
   ]
 }

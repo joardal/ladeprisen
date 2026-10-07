@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-06T04:00:19.542Z",
+  "generatedAt": "2026-10-07T04:00:26.457Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-10-06T04:00:18.027Z",
+      "fetchedAt": "2026-10-07T04:00:22.124Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,7 +44,7 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-06T04:00:19.541Z",
+      "fetchedAt": "2026-10-07T04:00:26.456Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -69,12 +69,12 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-10-06T04:00:18.088Z",
+      "fetchedAt": "2026-10-07T04:00:22.198Z",
       "rates": [
         {
           "customerType": "drop-in",
           "label": "Hurtig- og lynlading",
-          "amount": 5.89,
+          "amount": 6.49,
           "currency": "NOK",
           "unit": "kWh",
           "power": {
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-10-06T04:00:18.054Z",
+      "fetchedAt": "2026-10-07T04:00:26.294Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-10-06T04:00:18.081Z",
+      "fetchedAt": "2026-10-07T04:00:22.149Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -237,14 +237,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-06T04:00:18.477Z"
+      "checkedAt": "2026-10-07T04:00:22.631Z"
     },
     {
       "id": "lad-opp",
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-10-06T04:00:19.389Z",
+      "fetchedAt": "2026-10-07T04:00:22.769Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -267,7 +267,7 @@
       "name": "Mer",
       "status": "current",
       "sourceUrl": "https://no.mer.eco/ladenettverk/priser/",
-      "fetchedAt": "2026-10-06T04:00:18.070Z",
+      "fetchedAt": "2026-10-07T04:00:22.162Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -290,7 +290,7 @@
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-10-06T04:00:18.321Z",
+      "fetchedAt": "2026-10-07T04:00:22.321Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -313,7 +313,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-10-06T04:00:19.114Z",
+      "fetchedAt": "2026-10-07T04:00:23.191Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -350,7 +350,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-10-06T04:00:18.374Z",
+      "fetchedAt": "2026-10-07T04:00:22.374Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -396,7 +396,7 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-06T04:00:19.541Z",
+      "fetchedAt": "2026-10-07T04:00:26.456Z",
       "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [

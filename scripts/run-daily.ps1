@@ -6,6 +6,21 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
 
+if ($Publish) {
+  $expectedOrigin = 'https://github.com/joardal/ladeprisen.git'
+  $pushOrigin = (git remote get-url --push origin).Trim()
+  if ($LASTEXITCODE -ne 0 -or $pushOrigin -ne $expectedOrigin) {
+    throw "Publisering avbrutt: origin må peke til $expectedOrigin (fant '$pushOrigin')."
+  }
+
+  $branch = (git branch --show-current).Trim()
+  if ($LASTEXITCODE -ne 0 -or $branch -ne 'main') {
+    throw "Publisering avbrutt: arbeidsgrenen må være main (fant '$branch')."
+  }
+
+  Write-Host "Validerte publiseringsmål: $expectedOrigin (main)"
+}
+
 npm run prices:update
 if ($LASTEXITCODE -ne 0) {
   throw 'Oppdatering av operatørpriser feilet.'

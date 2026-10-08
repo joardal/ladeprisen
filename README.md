@@ -23,6 +23,8 @@ npx --yes serve dist
 
 Cloudflare Pages kan bruke byggekommandoen `npm run build` og publisere `dist/`. Bygget oppdaterer også `public/`, slik at den eksisterende direktepubliseringen fra `public/` fortsatt fungerer.
 
+Kildekoden vedlikeholdes i [joardal/ladeprisen](https://github.com/joardal/ladeprisen). Cloudflare Pages-prosjektet `ladeprisen-next` bygger automatisk fra `main`.
+
 Produksjonsbygget ligger i `dist/` og inkluderer genererte sider under `/ladepriser/`. Byene og koordinatene vedlikeholdes samlet i `config/cities.json`; HTML-malen ligger i `scripts/templates/city-page.mjs`. Endringer i malen gjelder dermed alle bysidene ved neste bygg.
 
 Canonical-adresser og sitemap bruker `SITE_URL`. Standardverdien er produksjonsdomenet:

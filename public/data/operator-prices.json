@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-09T04:00:11.894Z",
+  "generatedAt": "2026-10-10T04:00:09.623Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-10-09T04:00:10.663Z",
+      "fetchedAt": "2026-10-10T04:00:08.026Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,8 +44,8 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-09T04:00:11.894Z",
-      "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
+      "fetchedAt": "2026-10-10T04:00:09.622Z",
+      "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
         {
@@ -69,7 +69,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-10-09T04:00:10.688Z",
+      "fetchedAt": "2026-10-10T04:00:08.079Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-10-09T04:00:11.666Z",
+      "fetchedAt": "2026-10-10T04:00:09.427Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-10-09T04:00:11.131Z",
+      "fetchedAt": "2026-10-10T04:00:08.564Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -237,14 +237,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-09T04:00:11.085Z"
+      "checkedAt": "2026-10-10T04:00:08.283Z"
     },
     {
       "id": "lad-opp",
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-10-09T04:00:11.165Z",
+      "fetchedAt": "2026-10-10T04:00:09.186Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -284,14 +284,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-09T04:00:10.700Z"
+      "checkedAt": "2026-10-10T04:00:08.058Z"
     },
     {
       "id": "porsche",
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-10-09T04:00:10.921Z",
+      "fetchedAt": "2026-10-10T04:00:08.263Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -314,7 +314,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-10-09T04:00:11.686Z",
+      "fetchedAt": "2026-10-10T04:00:08.993Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -351,7 +351,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-10-09T04:00:10.826Z",
+      "fetchedAt": "2026-10-10T04:00:08.300Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -397,14 +397,14 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-09T04:00:11.894Z",
-      "sourceUpdatedAt": "2026-09-17T07:31:29.000Z",
+      "fetchedAt": "2026-10-10T04:00:09.622Z",
+      "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
         {
           "customerType": "drop-in",
           "label": "Dagtid, høyeste regionspris (Elbilforeningen)",
-          "amount": 5.5,
+          "amount": 5.9,
           "currency": "NOK",
           "unit": "kWh",
           "power": {

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T04:00:07.127Z",
+  "generatedAt": "2026-10-31T04:00:07.277Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-10-30T04:00:05.846Z",
+      "fetchedAt": "2026-10-31T04:00:06.151Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -44,7 +44,7 @@
       "name": "E.ON Drive & Clever",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-30T04:00:07.127Z",
+      "fetchedAt": "2026-10-31T04:00:07.277Z",
       "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [
@@ -69,7 +69,7 @@
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-10-30T04:00:05.907Z",
+      "fetchedAt": "2026-10-31T04:00:06.266Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +92,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-10-30T04:00:05.807Z",
+      "fetchedAt": "2026-10-31T04:00:06.158Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +129,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-10-30T04:00:06.315Z",
+      "fetchedAt": "2026-10-31T04:00:06.230Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -166,12 +166,12 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-10-30T04:00:06.313Z",
+      "fetchedAt": "2026-10-31T04:00:06.623Z",
       "rates": [
         {
           "customerType": "drop-in",
           "label": "Drop-in dagpris",
-          "amount": 6.79,
+          "amount": 6.99,
           "currency": "NOK",
           "unit": "kWh",
           "power": {
@@ -188,7 +188,7 @@
         {
           "customerType": "registered",
           "label": "Kople app/RFID dagpris",
-          "amount": 6.49,
+          "amount": 6.69,
           "currency": "NOK",
           "unit": "kWh",
           "power": {
@@ -243,7 +243,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-10-30T04:00:06.985Z",
+      "fetchedAt": "2026-10-31T04:00:06.138Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -283,14 +283,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-10-30T04:00:05.852Z"
+      "checkedAt": "2026-10-31T04:00:06.192Z"
     },
     {
       "id": "porsche",
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-10-30T04:00:06.069Z",
+      "fetchedAt": "2026-10-31T04:00:06.405Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -313,7 +313,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-10-30T04:00:06.803Z",
+      "fetchedAt": "2026-10-31T04:00:07.074Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -350,7 +350,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-10-30T04:00:06.196Z",
+      "fetchedAt": "2026-10-31T04:00:06.483Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -396,7 +396,7 @@
       "name": "Uno-X",
       "status": "fallback",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
-      "fetchedAt": "2026-10-30T04:00:07.127Z",
+      "fetchedAt": "2026-10-31T04:00:07.277Z",
       "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
       "reason": "Ukentlig kontrollkilde; operatøren publiserer ikke en tilsvarende nasjonal nettpris.",
       "rates": [

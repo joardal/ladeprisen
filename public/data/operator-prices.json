@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T04:00:21.296Z",
+  "generatedAt": "2026-11-03T04:00:40.215Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-11-02T04:00:18.826Z",
+      "fetchedAt": "2026-11-03T04:00:39.419Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -42,7 +42,7 @@
     {
       "id": "eon-clever",
       "name": "E.ON Drive & Clever",
-      "status": "fallback",
+      "status": "stale",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
       "fetchedAt": "2026-11-02T04:00:21.296Z",
       "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
@@ -62,14 +62,15 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ]
+      ],
+      "checkedAt": "2026-11-03T04:00:40.210Z"
     },
     {
       "id": "eviny",
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-11-02T04:00:18.898Z",
+      "fetchedAt": "2026-11-03T04:00:39.561Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -92,7 +93,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-11-02T04:00:18.845Z",
+      "fetchedAt": "2026-11-03T04:00:39.667Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -129,7 +130,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-11-02T04:00:21.052Z",
+      "fetchedAt": "2026-11-03T04:00:39.507Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -166,7 +167,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-11-02T04:00:19.205Z",
+      "fetchedAt": "2026-11-03T04:00:38.994Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -243,7 +244,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-11-02T04:00:20.007Z",
+      "fetchedAt": "2026-11-03T04:00:40.059Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -283,14 +284,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-11-02T04:00:18.880Z"
+      "checkedAt": "2026-11-03T04:00:39.657Z"
     },
     {
       "id": "porsche",
       "name": "Porsche",
       "status": "current",
       "sourceUrl": "https://ask.porsche.com/no/no-NO/charging-service-price-list/?q=&tab=charging-service",
-      "fetchedAt": "2026-11-02T04:00:19.132Z",
+      "fetchedAt": "2026-11-03T04:00:39.546Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -313,7 +314,7 @@
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-11-02T04:00:19.773Z",
+      "fetchedAt": "2026-11-03T04:00:39.614Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -350,12 +351,12 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-11-02T04:00:19.107Z",
+      "fetchedAt": "2026-11-03T04:00:39.752Z",
       "rates": [
         {
           "customerType": "drop-in",
           "label": "Drop-in",
-          "amount": 6.79,
+          "amount": 6.99,
           "currency": "NOK",
           "unit": "kWh",
           "power": {
@@ -394,7 +395,7 @@
     {
       "id": "uno-x",
       "name": "Uno-X",
-      "status": "fallback",
+      "status": "stale",
       "sourceUrl": "https://elbil.no/dette-koster-hurtiglading/",
       "fetchedAt": "2026-11-02T04:00:21.296Z",
       "sourceUpdatedAt": "2026-10-09T09:19:41.000Z",
@@ -414,7 +415,8 @@
           "monthlyFee": null,
           "region": "highest-national"
         }
-      ]
+      ],
+      "checkedAt": "2026-11-03T04:00:40.210Z"
     }
   ]
 }

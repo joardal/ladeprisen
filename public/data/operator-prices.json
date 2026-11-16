@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-15T04:00:07.163Z",
+  "generatedAt": "2026-11-16T04:00:14.455Z",
   "operators": [
     {
       "id": "circle-k",
       "name": "Circle K",
       "status": "current",
       "sourceUrl": "https://www.circlek.no/lading/ladepriser",
-      "fetchedAt": "2026-11-15T04:00:06.000Z",
+      "fetchedAt": "2026-11-16T04:00:12.276Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -63,14 +63,14 @@
           "region": "highest-national"
         }
       ],
-      "checkedAt": "2026-11-15T04:00:07.163Z"
+      "checkedAt": "2026-11-16T04:00:14.454Z"
     },
     {
       "id": "eviny",
       "name": "Eviny",
       "status": "current",
       "sourceUrl": "https://hurtiglading.eviny.no/",
-      "fetchedAt": "2026-11-15T04:00:06.099Z",
+      "fetchedAt": "2026-11-16T04:00:12.291Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -93,7 +93,7 @@
       "name": "IONITY",
       "status": "current",
       "sourceUrl": "https://www.ionity.eu/subscriptions",
-      "fetchedAt": "2026-11-15T04:00:05.944Z",
+      "fetchedAt": "2026-11-16T04:00:12.301Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -130,7 +130,7 @@
       "name": "Ishavsveien",
       "status": "current",
       "sourceUrl": "https://www.ishavsveien.no/priser/",
-      "fetchedAt": "2026-11-15T04:00:06.546Z",
+      "fetchedAt": "2026-11-16T04:00:14.204Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -167,7 +167,7 @@
       "name": "Kople",
       "status": "current",
       "sourceUrl": "https://www.kople.no/veiledning/ladepris",
-      "fetchedAt": "2026-11-15T04:00:05.989Z",
+      "fetchedAt": "2026-11-16T04:00:12.493Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -244,7 +244,7 @@
       "name": "Lad Opp",
       "status": "current",
       "sourceUrl": "https://ladopp.no/betaling/",
-      "fetchedAt": "2026-11-15T04:00:06.956Z",
+      "fetchedAt": "2026-11-16T04:00:13.070Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -284,7 +284,7 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-11-15T04:00:06.006Z"
+      "checkedAt": "2026-11-16T04:00:12.352Z"
     },
     {
       "id": "porsche",
@@ -308,14 +308,14 @@
           "region": null
         }
       ],
-      "checkedAt": "2026-11-15T04:00:06.207Z"
+      "checkedAt": "2026-11-16T04:00:12.502Z"
     },
     {
       "id": "ragde-charge",
       "name": "Ragde Charge",
       "status": "current",
       "sourceUrl": "https://ragde.no/charge/",
-      "fetchedAt": "2026-11-15T04:00:06.887Z",
+      "fetchedAt": "2026-11-16T04:00:13.369Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -352,7 +352,7 @@
       "name": "Recharge",
       "status": "current",
       "sourceUrl": "https://rechargeinfra.com/no/",
-      "fetchedAt": "2026-11-15T04:00:06.263Z",
+      "fetchedAt": "2026-11-16T04:00:12.672Z",
       "rates": [
         {
           "customerType": "drop-in",
@@ -417,7 +417,7 @@
           "region": "highest-national"
         }
       ],
-      "checkedAt": "2026-11-15T04:00:07.163Z"
+      "checkedAt": "2026-11-16T04:00:14.454Z"
     }
   ]
 }
